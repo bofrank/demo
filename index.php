@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
-	 <script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -31,11 +32,11 @@
 	<div data-role="footer">		
 		<div data-role="navbar">
 			<ul>
-				<li><a href="#">One</a></li>
-				<li><a href="#">Two</a></li>
-				<li><a href="#">Three</a></li>
-				<li><a href="#">Four</a></li>
-				<li><a href="#">Five</a></li>
+				<li><a href="#" data-icon="star">Favorites</a></li>
+				<li><a href="#"><i class="fa fa-list" style="font-size:20px;color:#999;"></i><br>Matching</a></li>
+				<li><a href="#"><i class="fa fa-comments-o" style="font-size:20px;color:#999;"></i><br>Chats</a></li>
+				<li><a href="#"><i class="fa fa-globe" style="font-size:20px;color:#999;"></i><br>Trending</a></li>
+				<li><a href="#"><i class="fa fa-users" style="font-size:20px;color:#999;"></i><br>Contacts</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /footer -->
