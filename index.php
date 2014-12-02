@@ -10,12 +10,9 @@
 </head>
 <body>
 
-<!-- Start of first page -->
-<div data-role="page" id="foo">
+<div data-role="page" id="home">
 
-	<div data-role="header">
-		<h1>TopicB</h1>
-	</div><!-- /header -->
+	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
     <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true">
@@ -25,33 +22,84 @@
 				<li><a href="#">Heli-Skiing</a></li>
 				<li><a href="#">Kids Snow School</a></li>
 				<li><a href="#">Restaurants</a></li>
+				<li><a href="#">Alpine Tour Bindings</a></li>
 		</ul>
-		<p>link to another <a href="#bar">page</a></p>
-	</div><!-- /content -->
+	</div>
 
-	<?php
-		include('footer.php');
-	?>
-	
-</div><!-- /page -->
+	<?php include('footer.php'); ?>
 
-<!-- Start of second page -->
+</div>
+
+
 <div data-role="page" id="favorites">
 
-	<div data-role="header">
-		<h1>TopicB Favorites</h1>
-	</div><!-- /header -->
+	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my id is beeing clicked.</p>
-		<p><a href="#foo">Back to foo</a></p>
-	</div><!-- /content -->
+		<p>Favorites Content</p>
+		<p><a href="#home">Back to home</a></p>
+	</div>
 
-	<?php
-		include('footer.php');
-	?>
+	<?php include('footer.php'); ?>
 
-</div><!-- /page -->
-</body>
+</div>
+
+
+<div data-role="page" id="matching">
+
+	<?php include('header.php'); ?>
+
+	<div role="main" class="ui-content">
+		<p>Matching Content</p>
+		<p><a href="#home">Back to home</a></p>
+	</div>
+
+	<?php include('footer.php'); ?>
+
+</div>
+
+
+<div data-role="page" id="chats">
+
+	<?php include('header.php'); ?>
+
+	<div role="main" class="ui-content">
+		<p>Chats Content</p>
+		<p><a href="#home">Back to home</a></p>
+	</div>
+
+	<?php include('footer.php'); ?>
+
+</div>
+
+
+<div data-role="page" id="trending">
+
+	<?php include('header.php'); ?>
+
+	<div role="main" class="ui-content">
+		<p>Trending Content</p>
+		<p><a href="#home">Back to home</a></p>
+	</div>
+
+	<?php include('footer.php'); ?>
+
+</div>
+
+
+<div data-role="page" id="contacts">
+
+	<?php include('header.php'); ?>
+
+	<div role="main" class="ui-content">
+		<p>Contacts Content</p>
+		<p><a href="#home">Back to home</a></p>
+	</div>
+
+	<?php include('footer.php'); ?>
+
+</div>
+
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!-- footer begin -->
-<div data-role="footer">		
+<div data-role="footer">
 	<div data-role="navbar">
 		<ul>
 			<li><a href="#favorites" data-icon="star">Favorites</a></li>
