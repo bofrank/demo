@@ -13,16 +13,31 @@
 <div data-role="page" id="foo">
 
 	<div data-role="header">
-		<h1>Foo</h1>
+		<h1>TopicB</h1>
 	</div><!-- /header -->
 
 	<div role="main" class="ui-content">
-		<p>I'm first in the source order so I'm shown as the page.</p>
-		<p>View internal page called <a href="#bar">bar</a></p>
+    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true">
+				<li><a href="#">Lodging</a></li>
+				<li><a href="#">Travel Agent</a></li>
+				<li><a href="#">Snow Report</a></li>
+				<li><a href="#">Heli-Skiing</a></li>
+				<li><a href="#">Kids Snow School</a></li>
+				<li><a href="#">Restaurants</a></li>
+		</ul>
+		<p>link to another <a href="#bar">page</a></p>
 	</div><!-- /content -->
 
-	<div data-role="footer">
-		<h4>Page Footer</h4>
+	<div data-role="footer">		
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#">One</a></li>
+				<li><a href="#">Two</a></li>
+				<li><a href="#">Three</a></li>
+				<li><a href="#">Four</a></li>
+				<li><a href="#">Five</a></li>
+			</ul>
+		</div><!-- /navbar -->
 	</div><!-- /footer -->
 </div><!-- /page -->
 
@@ -38,9 +53,18 @@
 		<p><a href="#foo">Back to foo</a></p>
 	</div><!-- /content -->
 
-	<div data-role="footer">
-		<h4>Page Footer</h4>
+	<div data-role="footer">		
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#">One</a></li>
+				<li><a href="#">Two</a></li>
+				<li><a href="#">Three</a></li>
+				<li><a href="#">Four</a></li>
+				<li><a href="#">Five</a></li>
+			</ul>
+		</div><!-- /navbar -->
 	</div><!-- /footer -->
+
 </div><!-- /page -->
 </body>
 </body>
