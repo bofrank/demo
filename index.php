@@ -29,24 +29,17 @@
 		<p>link to another <a href="#bar">page</a></p>
 	</div><!-- /content -->
 
-	<div data-role="footer">		
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#" data-icon="star">Favorites</a></li>
-				<li><a href="#"><i class="fa fa-list" style="font-size:20px;color:#999;"></i><br>Matching</a></li>
-				<li><a href="#"><i class="fa fa-comments-o" style="font-size:20px;color:#999;"></i><br>Chats</a></li>
-				<li><a href="#"><i class="fa fa-globe" style="font-size:20px;color:#999;"></i><br>Trending</a></li>
-				<li><a href="#"><i class="fa fa-users" style="font-size:20px;color:#999;"></i><br>Contacts</a></li>
-			</ul>
-		</div><!-- /navbar -->
-	</div><!-- /footer -->
+	<?php
+		include('footer.php');
+	?>
+	
 </div><!-- /page -->
 
 <!-- Start of second page -->
-<div data-role="page" id="bar">
+<div data-role="page" id="favorites">
 
 	<div data-role="header">
-		<h1>Bar</h1>
+		<h1>TopicB Favorites</h1>
 	</div><!-- /header -->
 
 	<div role="main" class="ui-content">
@@ -54,17 +47,9 @@
 		<p><a href="#foo">Back to foo</a></p>
 	</div><!-- /content -->
 
-	<div data-role="footer">		
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#">One</a></li>
-				<li><a href="#">Two</a></li>
-				<li><a href="#">Three</a></li>
-				<li><a href="#">Four</a></li>
-				<li><a href="#">Five</a></li>
-			</ul>
-		</div><!-- /navbar -->
-	</div><!-- /footer -->
+	<?php
+		include('footer.php');
+	?>
 
 </div><!-- /page -->
 </body>
