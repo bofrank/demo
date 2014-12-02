@@ -8,6 +8,23 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+
+<script>
+
+		$(document).ready(function() {
+
+			$(document).on("swipeleft", '#home', function () {
+		    $('#favs').trigger('click');
+		  }).on("swipeleft", '#matching', function () {
+		    $('#favs').trigger('click');
+		  });
+
+
+
+		});
+
+</script>
+
 <body>
 
 <div data-role="page" id="home">
@@ -34,6 +51,8 @@
 <div data-role="page" id="favorites">
 
 	<?php include('header.php'); ?>
+
+	</script>
 
 	<div role="main" class="ui-content">
 		<p>Favorites Content</p>
