@@ -13,36 +13,60 @@
 
 		$(document).ready(function() {
 
+			//show button as active in navigation
+			$(document).on("pageshow", '#page_01', function () {
+		    $('#page_01').find("#link_01").addClass("ui-btn-active ui-state-persist");
+		  }).on("pageshow", '#page_02', function () {
+		    $('#page_02').find("#link_02").addClass("ui-btn-active ui-state-persist");
+		  }).on("pageshow", '#page_03', function () {
+		    $('#page_03').find("#link_03").addClass("ui-btn-active ui-state-persist");
+		  }).on("pageshow", '#page_04', function () {
+		    $('#page_04').find("#link_04").addClass("ui-btn-active ui-state-persist");
+		  }).on("pageshow", '#page_05', function () {
+		    $('#page_05').find("#link_05").addClass("ui-btn-active ui-state-persist");
+		  });
+
 			//handle swipe left
-			$(document).on("swipeleft", '#home', function () {
+			$(document).on("swipeleft", '#page_00', function () {
+				$('#link_01').removeAttr("data-direction");
 		    $('#link_01').trigger('click');
-		  }).on("swipeleft", '#favorites', function () {
+		  }).on("swipeleft", '#page_01', function () {
+		  	$('#link_02').removeAttr("data-direction");
 		    $('#link_02').trigger('click');
-		  }).on("swipeleft", '#matching', function () {
+		  }).on("swipeleft", '#page_02', function () {
+		  	$('#link_03').removeAttr("data-direction");
 		    $('#link_03').trigger('click');
-		  }).on("swipeleft", '#chats', function () {
+		  }).on("swipeleft", '#page_03', function () {
+		  	$('#link_04').removeAttr("data-direction");
 		    $('#link_04').trigger('click');
-		  }).on("swipeleft", '#trending', function () {
+		  }).on("swipeleft", '#page_04', function () {
+		  	$('#link_05').removeAttr("data-direction");
 		    $('#link_05').trigger('click');
-		  }).on("swipeleft", '#contacts', function () {
+		  }).on("swipeleft", '#page_05', function () {
+		  	$('#link_00').removeAttr("data-direction");
 		    $('#link_00').trigger('click');
 		  });
 
 		  //handle swipe right
-		  $(document).on("swiperight", '#favorites', function () {
+		  $(document).on("swiperight", '#page_01', function () {
 		    $('#link_00').trigger('click');
-		  }).on("swiperight", '#matching', function () {
+		    $('#link_00').attr("data-direction","reverse");
+		  }).on("swiperight", '#page_02', function () {
+		  	$('#link_01').attr("data-direction","reverse");
 		    $('#link_01').trigger('click');
-		  }).on("swiperight", '#chats', function () {
+		  }).on("swiperight", '#page_03', function () {
+		  	$('#link_02').attr("data-direction","reverse");
 		    $('#link_02').trigger('click');
-		  }).on("swiperight", '#trending', function () {
+		  }).on("swiperight", '#page_04', function () {
+		  	$('#link_03').attr("data-direction","reverse");
 		    $('#link_03').trigger('click');
-		  }).on("swiperight", '#contacts', function () {
+		  }).on("swiperight", '#page_05', function () {
+		  	$('#link_04').attr("data-direction","reverse");
 		    $('#link_04').trigger('click');
-		  }).on("swiperight", '#home', function () {
+		  }).on("swiperight", '#page_00', function () {
+		  	$('#link_05').attr("data-direction","reverse");
 		    $('#link_05').trigger('click');
 		  });
-
 
 		});
 
@@ -50,7 +74,7 @@
 
 <body>
 
-<div data-role="page" id="home">
+<div data-role="page" id="page_00">
 
 	<?php include('header.php'); ?>
 
@@ -70,30 +94,26 @@
 
 </div>
 
-
-<div data-role="page" id="favorites">
-
-	<?php include('header.php'); ?>
-
-	</script>
-
-	<div role="main" class="ui-content">
-		<p>Favorites Content</p>
-		<p><a href="#home">Back to home</a></p>
-	</div>
-
-	<?php include('footer.php'); ?>
-
-</div>
-
-
-<div data-role="page" id="matching">
+<div data-role="page" id="page_01">
 
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
 		<p>Matching Content</p>
-		<p><a href="#home">Back to home</a></p>
+		<p><a href="#page_00">Back to home</a></p>
+	</div>
+
+	<?php include('footer.php'); ?>
+
+</div>
+
+<div data-role="page" id="page_02">
+
+	<?php include('header.php'); ?>
+
+	<div role="main" class="ui-content">
+		<p>Matching Content</p>
+		<p><a href="#page_00">Back to home</a></p>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -101,13 +121,13 @@
 </div>
 
 
-<div data-role="page" id="chats">
+<div data-role="page" id="page_03">
 
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
 		<p>Chats Content</p>
-		<p><a href="#home">Back to home</a></p>
+		<p><a href="#page_00">Back to home</a></p>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -115,13 +135,13 @@
 </div>
 
 
-<div data-role="page" id="trending">
+<div data-role="page" id="page_04">
 
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
 		<p>Trending Content</p>
-		<p><a href="#home">Back to home</a></p>
+		<p><a href="#page_00">Back to home</a></p>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -129,13 +149,13 @@
 </div>
 
 
-<div data-role="page" id="contacts">
+<div data-role="page" id="page_05">
 
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
 		<p>Contacts Content</p>
-		<p><a href="#home">Back to home</a></p>
+		<p><a href="#page_00">Back to home</a></p>
 	</div>
 
 	<?php include('footer.php'); ?>
