@@ -13,12 +13,35 @@
 
 		$(document).ready(function() {
 
+			//handle swipe left
 			$(document).on("swipeleft", '#home', function () {
-		    $('#favs').trigger('click');
+		    $('#link_01').trigger('click');
+		  }).on("swipeleft", '#favorites', function () {
+		    $('#link_02').trigger('click');
 		  }).on("swipeleft", '#matching', function () {
-		    $('#favs').trigger('click');
+		    $('#link_03').trigger('click');
+		  }).on("swipeleft", '#chats', function () {
+		    $('#link_04').trigger('click');
+		  }).on("swipeleft", '#trending', function () {
+		    $('#link_05').trigger('click');
+		  }).on("swipeleft", '#contacts', function () {
+		    $('#link_00').trigger('click');
 		  });
 
+		  //handle swipe right
+		  $(document).on("swiperight", '#favorites', function () {
+		    $('#link_00').trigger('click');
+		  }).on("swiperight", '#matching', function () {
+		    $('#link_01').trigger('click');
+		  }).on("swiperight", '#chats', function () {
+		    $('#link_02').trigger('click');
+		  }).on("swiperight", '#trending', function () {
+		    $('#link_03').trigger('click');
+		  }).on("swiperight", '#contacts', function () {
+		    $('#link_04').trigger('click');
+		  }).on("swiperight", '#home', function () {
+		    $('#link_05').trigger('click');
+		  });
 
 
 		});
