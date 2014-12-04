@@ -87,12 +87,12 @@
 	<div role="main" class="ui-content">
     <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" data-filter-reveal="true">
 				<li><a onclick="chatStart($(this).text());">Heli-Skiing</a></li>
-				<li><a href="#page_03">Travel Agent</a></li>
-				<li><a href="#page_03">Snow Report</a></li>
-				<li><a href="#page_03">Lodging</a></li>
-				<li><a href="#page_03">Kids Snow School</a></li>
-				<li><a href="#page_03">Restaurants</a></li>
-				<li><a href="#page_03">Alpine Tour Bindings</a></li>
+				<li><a onclick="chatStart($(this).text());">Travel Agent</a></li>
+				<li><a onclick="chatStart($(this).text());">Snow Report</a></li>
+				<li><a onclick="chatStart($(this).text());">Lodging</a></li>
+				<li><a onclick="chatStart($(this).text());">Kids Snow School</a></li>
+				<li><a onclick="chatStart($(this).text());">Restaurants</a></li>
+				<li><a onclick="chatStart($(this).text());">Alpine Tour Bindings</a></li>
 		</ul>
 	</div>
 
