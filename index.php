@@ -70,6 +70,12 @@
 
 		});
 
+		var topic="default";
+		function chatStart(topic){
+			$.mobile.changePage("#page_03");
+			$("#chatBox").attr("src","../index_chat.php?chatter=0000000000&chatee=1111111111&topicinit="+topic);
+		}
+
 </script>
 
 <body>
@@ -79,14 +85,14 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true">
-				<li><a href="#">Lodging</a></li>
-				<li><a href="#">Travel Agent</a></li>
-				<li><a href="#">Snow Report</a></li>
-				<li><a href="#">Heli-Skiing</a></li>
-				<li><a href="#">Kids Snow School</a></li>
-				<li><a href="#">Restaurants</a></li>
-				<li><a href="#">Alpine Tour Bindings</a></li>
+    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" data-filter-reveal="true">
+				<li><a onclick="chatStart($(this).text());">Heli-Skiing</a></li>
+				<li><a href="#page_03">Travel Agent</a></li>
+				<li><a href="#page_03">Snow Report</a></li>
+				<li><a href="#page_03">Lodging</a></li>
+				<li><a href="#page_03">Kids Snow School</a></li>
+				<li><a href="#page_03">Restaurants</a></li>
+				<li><a href="#page_03">Alpine Tour Bindings</a></li>
 		</ul>
 	</div>
 
@@ -99,8 +105,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<p>Matching Content</p>
-		<p><a href="#page_00">Back to home</a></p>
+		<p>Favorites Content</p>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -113,7 +118,6 @@
 
 	<div role="main" class="ui-content">
 		<p>Matching Content</p>
-		<p><a href="#page_00">Back to home</a></p>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -126,8 +130,13 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<p>Chats Content</p>
-		<p><a href="#page_00">Back to home</a></p>
+
+		<div style="width:300px;margin-left:auto;margin-right:auto;padding-left:15px;padding-right:15px;background:#999;">
+
+      <iframe style="border:none;height:200px;margin-top:10px;overflow:hidden;width:103%;" src="../index_chat.php?chatter=0000000000&amp;chatee=1111111111&amp;topicinit=lobby" id="chatBox"></iframe>
+
+    </div>
+
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -141,7 +150,6 @@
 
 	<div role="main" class="ui-content">
 		<p>Trending Content</p>
-		<p><a href="#page_00">Back to home</a></p>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -155,7 +163,6 @@
 
 	<div role="main" class="ui-content">
 		<p>Contacts Content</p>
-		<p><a href="#page_00">Back to home</a></p>
 	</div>
 
 	<?php include('footer.php'); ?>
