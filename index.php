@@ -11,6 +11,72 @@
 
 <script>
 
+
+	var strTapId, strPassWord;
+			
+	<?php
+
+		//$cookie = 10;
+		$cookie = createCookie();
+
+		function createCookie(){
+
+		    $text = "";
+		    $possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		    $possibleLength = strlen($possible);
+		    
+
+		    for($i=0;$i<23;$i++){
+		        $possibleRand = rand(0,$possibleLength);
+		        $text = $text.$possible{$possibleRand};
+		    }
+		    return $text;
+
+		}
+
+
+		$socket = socket_create( AF_INET, SOCK_STREAM, SOL_TCP );
+		socket_connect( $socket, "172.31.27.57", 8010 );
+
+		socket_write( $socket, "command=create_tap_id&cookie=$cookie" );
+
+		$buf = socket_read( $socket, 2048 );
+		#echo $buf;
+
+		parse_str($buf, $array);
+
+		socket_close( $socket );
+
+		$strTapId = $array['tapid'];
+		$strPassWord = $array['strPassWord'];
+
+		echo "strTapId = '".$array['tapid']."';\n";
+		echo "strPassWord = '".$array['password']."';\n";
+		echo "var newCookie = '".$cookie."';\n";
+
+	?>
+
+	function login()
+	{
+		tap.callback( "{ actionType:'login', tapid: '" + strTapId + "', password: '" + strPassWord + "' }" );
+	}
+
+	function logout()
+	{
+		tap.callback( "{ actionType:'logout' }" );
+	}
+
+	function showdialpad()
+	{
+		tap.callback( "{ actionType:'showdialpad' }" );
+	}
+
+	function call(tapIdCallee)
+	{
+          tapIdCallee = tapIdCallee.replace(/-/g, "");
+	 		tap.callback( "{ actionType:'call', callnumber:"+tapIdCallee+" }" );
+	}
+
 	$(document).ready(function() {
 
 		//show button as active in navigation
@@ -68,7 +134,7 @@
 	    $('#link_05').trigger('click');
 	  });
 
-	  $("#topic_list a").click(function(){
+	  $(".topic_list a").click(function(){
 		  chatStart($(this).text());
 		});
 
@@ -77,17 +143,22 @@
 	});
 
 	//create unique id (this will eventually become tapid from sip server)
+	/*
 	var cookie = "";
   var possible = "0123456789";
 
   for( var i=0; i < 10; i++ )
       cookie += possible.charAt(Math.floor(Math.random() * possible.length));
-
+	*/
 	//create chat from clicking on topic
 	var topic="default";
 	function chatStart(topic){
 		$.mobile.changePage("#page_03");
-		$("#chatBox").attr("src","../index_chat.php?chatter="+cookie+"&chatee=1111111111&topicinit="+topic);
+		$("#chatBox").attr("src","../index_chat.php?chatter="+<?php echo $strTapId ?>+"&chatee=1111111111&topicinit="+topic);
+	}
+
+	function voiceStart(callee){
+		alert("Calling "+callee);
 	}
 
 </script>
@@ -99,7 +170,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" data-filter-reveal="true" id="topic_list">
+    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" data-filter-reveal="true" class="topic_list">
 				<li><a>Heli-Skiing</a></li>
 				<li><a>Travel Agent</a></li>
 				<li><a>Snow Report</a></li>
@@ -122,7 +193,18 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<p>Favorites Content</p>
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" class="topic_list">
+				<li><a>Heli-Skiing</a></li>
+				<li><a>Travel Agent</a></li>
+				<li><a>Snow Report</a></li>
+				<li><a>Lodging</a></li>
+				<li><a>Kids Snow School</a></li>
+				<li><a>Restaurants</a></li>
+				<li><a>Alpine Tour Bindings</a></li>
+				<li><a>fresh powder</a></li>
+				<li><a>best month for powder</a></li>
+				<li><a>powder skiis</a></li>
+		</ul>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -134,7 +216,18 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<p>Matching Content</p>
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" class="topic_list">
+				<li><a>Heli-Skiing</a></li>
+				<li><a>Travel Agent</a></li>
+				<li><a>Snow Report</a></li>
+				<li><a>Lodging</a></li>
+				<li><a>Kids Snow School</a></li>
+				<li><a>Restaurants</a></li>
+				<li><a>Alpine Tour Bindings</a></li>
+				<li><a>fresh powder</a></li>
+				<li><a>best month for powder</a></li>
+				<li><a>powder skiis</a></li>
+		</ul>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -166,7 +259,18 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<p>Trending Content</p>
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" class="topic_list">
+				<li><a>Heli-Skiing</a></li>
+				<li><a>Travel Agent</a></li>
+				<li><a>Snow Report</a></li>
+				<li><a>Lodging</a></li>
+				<li><a>Kids Snow School</a></li>
+				<li><a>Restaurants</a></li>
+				<li><a>Alpine Tour Bindings</a></li>
+				<li><a>fresh powder</a></li>
+				<li><a>best month for powder</a></li>
+				<li><a>powder skiis</a></li>
+		</ul>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -179,7 +283,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<p>Contacts Content</p>
+		<p>Show Dial Pad Here</p>
 	</div>
 
 	<?php include('footer.php'); ?>
