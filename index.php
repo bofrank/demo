@@ -73,11 +73,33 @@
 
 	function call(tapIdCallee)
 	{
-          tapIdCallee = tapIdCallee.replace(/-/g, "");
-	 		tap.callback( "{ actionType:'call', callnumber:"+tapIdCallee+" }" );
+    tapIdCallee = tapIdCallee.replace(/-/g, "");
+	 	tap.callback( "{ actionType:'call', callnumber:"+tapIdCallee+" }" );
 	}
 
 	$(document).ready(function() {
+
+		//get topic from url
+    var urlTopic = getUrlParameter('topic');
+    var urlImage = getUrlParameter('image');
+
+    function getUrlParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) 
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) 
+            {
+                return sParameterName[1];
+            }
+        }
+    }
+
+    //add url topic to list
+    $("input[placeholder='Search TopicB']").val(urlTopic).trigger("change");
+    $("<li><a>"+urlTopic+"</a></li>").prependTo(".topic_list");
 
 		//show button as active in navigation
 		$(document).on("pageshow", '#page_01', function () {
@@ -134,11 +156,11 @@
 	    $('#link_05').trigger('click');
 	  });
 
+	  //bind choosing a topic to starting chat and getting a tapid
 	  $(".topic_list a").click(function(){
 		  chatStart($(this).text());
 		});
 
-		
 
 	});
 
