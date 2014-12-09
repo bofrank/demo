@@ -98,8 +98,10 @@
     }
 
     //add url topic to list
-    $("input[placeholder='Search TopicB']").val(urlTopic).trigger("change");
-    $("<li><a>"+urlTopic+"</a></li>").prependTo(".topic_list");
+    if(urlTopic){
+    	$("input[placeholder='Search TopicB']").val(urlTopic).trigger("change");
+    	$("<li><a>"+urlTopic+"</a></li>").prependTo(".topic_list");
+  	}
 
 		//show button as active in navigation
 		$(document).on("pageshow", '#page_01', function () {
@@ -181,6 +183,11 @@
 
 	function voiceStart(callee){
 		alert("Calling "+callee);
+	}
+
+	function favSave(topic){
+		//alert("Topic "+topic+" saved. Go to favs.");
+		$('#link_01').trigger('click');
 	}
 
 </script>
