@@ -163,6 +163,7 @@
 		  chatStart($(this).text());
 		});
 
+		$("#phoneBox").attr("src","../flashphone/index.php?c="+newCookie);
 
 	});
 
@@ -182,7 +183,13 @@
 	}
 
 	function voiceStart(callee){
-		alert("Calling "+callee);
+		var calleeStripped = callee.replace(/-/g, "");
+		$("#phoneBox").attr("src","../flashphone/index.php?c="+newCookie+"&callee="+calleeStripped);
+		$('#link_05').trigger('click');
+	}
+
+	function voiceIncoming(){
+		$('#link_05').trigger('click');
 	}
 
 	function favSave(topic){
@@ -312,7 +319,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<p>Show Dial Pad Here</p>
+		<iframe id="phoneBox" src="" scrolling="no" width="246" height="400" border="0" style="width:246px;height:400px;border:none;"></iframe>
 	</div>
 
 	<?php include('footer.php'); ?>
