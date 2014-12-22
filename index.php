@@ -207,6 +207,7 @@
 
 	<div role="main" class="ui-content">
     <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" data-filter-reveal="true" class="topic_list">
+	    	<li><a>TopicB</a></li>
 				<li><a>Heli-Skiing</a></li>
 				<li><a>Travel Agent</a></li>
 				<li><a>Snow Report</a></li>
@@ -230,6 +231,7 @@
 
 	<div role="main" class="ui-content">
 		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" class="topic_list">
+				<li><a>TopicB</a></li>
 				<li><a>Heli-Skiing</a></li>
 				<li><a>Travel Agent</a></li>
 				<li><a>Snow Report</a></li>
@@ -253,6 +255,7 @@
 
 	<div role="main" class="ui-content">
 		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" class="topic_list">
+				<li><a>TopicB</a></li>
 				<li><a>Heli-Skiing</a></li>
 				<li><a>Travel Agent</a></li>
 				<li><a>Snow Report</a></li>
@@ -296,6 +299,7 @@
 
 	<div role="main" class="ui-content">
 		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" class="topic_list">
+				<li><a>TopicB</a></li>
 				<li><a>Heli-Skiing</a></li>
 				<li><a>Travel Agent</a></li>
 				<li><a>Snow Report</a></li>
