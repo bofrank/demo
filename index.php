@@ -103,6 +103,14 @@
     	$("<li><a>"+urlTopic+"</a></li>").prependTo(".topic_list");
   	}
 
+  	//add image to list
+  	if(urlImage){
+    	$("input[placeholder='Search TopicB']").val(urlImage).trigger("change");
+    	$("<li><a class='ui-btn ui-btn-icon-right ui-icon-carat-r' style='cursor:pointer;'><img src='"+urlImage+"' style='max-height:200%;max-width:200%' /></a></li>").prependTo(".topic_list");
+    	$("#imgTopic").html("<img src="+urlImage+" />");
+    	chatStart(urlImage);
+  	}
+
 		//show button as active in navigation
 		$(document).on("pageshow", '#page_01', function () {
 	    $('#page_01').find("#link_01").addClass("ui-btn-active ui-state-persist");
@@ -160,7 +168,15 @@
 
 	  //bind choosing a topic to starting chat and getting a tapid
 	  $(".topic_list a").click(function(){
-		  chatStart($(this).text());
+	  	var $tempTopic = $(this).html();
+	  	var $tempURL = $(this).find('img').attr("src");
+	  	if($($tempTopic).is("img")){
+		  	chatStart($tempURL);
+		  	$("#imgTopic").html("<img src="+$tempURL+" />");
+			}else{
+				chatStart($(this).text());
+				$("#imgTopic").html("");
+			}
 		});
 
 		$("#phoneBox").attr("src","../flashphone/index.php?c="+newCookie);
@@ -175,7 +191,9 @@
   for( var i=0; i < 10; i++ )
       cookie += possible.charAt(Math.floor(Math.random() * possible.length));
 	*/
+
 	//create chat from clicking on topic
+
 	var topic="default";
 	function chatStart(topic){
 		$.mobile.changePage("#page_03");
@@ -208,6 +226,7 @@
 	<div role="main" class="ui-content">
     <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" data-filter-reveal="true" class="topic_list">
 	    	<li><a>TopicB</a></li>
+	    	<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
 				<li><a>Travel Agent</a></li>
 				<li><a>Snow Report</a></li>
@@ -232,6 +251,7 @@
 	<div role="main" class="ui-content">
 		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" class="topic_list">
 				<li><a>TopicB</a></li>
+				<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
 				<li><a>Travel Agent</a></li>
 				<li><a>Snow Report</a></li>
@@ -256,6 +276,7 @@
 	<div role="main" class="ui-content">
 		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" class="topic_list">
 				<li><a>TopicB</a></li>
+				<li><a><img src='http://topicb.com/seahawks/images/logo.png' style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
 				<li><a>Travel Agent</a></li>
 				<li><a>Snow Report</a></li>
@@ -273,7 +294,7 @@
 
 </div>
 
-
+<!-- this is the chat page -->
 <div data-role="page" id="page_03">
 
 	<?php include('header.php'); ?>
@@ -281,6 +302,10 @@
 	<div role="main" class="ui-content">
 
 		<div style="width:90%;margin-left:auto;margin-right:auto;padding-left:15px;padding-right:15px;background:#999;">
+
+			<div id="imgTopic">
+				<!-- load image here -->
+			</div>
 
       <iframe style="border:none;min-height:400px;margin-top:10px;overflow:hidden;width:103%;" src="../index_chat.php?chatter=0000000000&amp;chatee=1111111111&amp;topicinit=lobby" id="chatBox"></iframe>
 
@@ -300,6 +325,7 @@
 	<div role="main" class="ui-content">
 		<ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" class="topic_list">
 				<li><a>TopicB</a></li>
+				<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
 				<li><a>Travel Agent</a></li>
 				<li><a>Snow Report</a></li>
