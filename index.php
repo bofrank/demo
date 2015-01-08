@@ -16,6 +16,9 @@
 			
 	<?php
 
+		include("mysqli.class.php"); 
+		include("data.php");
+
 		//$cookie = 10;
 		$cookie = createCookie();
 
@@ -53,6 +56,38 @@
 		echo "strTapId = '".$array['tapid']."';\n";
 		echo "strPassWord = '".$array['password']."';\n";
 		echo "var newCookie = '".$cookie."';\n";
+
+		//load data
+
+		$config = array();
+		$config['host'] = $hostname;
+		$config['user'] = $username;
+		$config['pass'] = $password;
+		$config['table'] = 'topicb';
+
+		$DB = new DB($config);
+
+		$DB->Query("SELECT * FROM topicb.topics ORDER BY tapid DESC");
+
+		$result = $DB->get();
+
+		$dataFormated = array();
+
+		//$dataResult = $dataFormated[0]['topic'];
+		//$dataResult = json_encode(fix_keys($dataFormated));
+/*
+		for($i=0;$i<count($result);$i+=3){
+
+	    $dataFormated[$i]['topic'] = $result[$i]['topic'];
+	    $dataFormated[$i]['tapid'] = $result[$i]['tapid'];
+	    $dataFormated[$i]['category'] = $result[$i]['category'];
+
+	    $topicNum = $i+1;
+
+	    echo "var topicNum=".$topicNum;
+
+		}
+*/
 
 	?>
 
@@ -166,6 +201,22 @@
 	    $('#link_05').trigger('click');
 	  });
 
+		<?php
+
+			for($i=0;$i<count($result);$i+=3){
+
+		    $dataFormated[$i]['topic'] = $result[$i]['topic'];
+		    $dataFormated[$i]['tapid'] = $result[$i]['tapid'];
+		    $dataFormated[$i]['category'] = $result[$i]['category'];
+
+		    echo '$(".topic_list").append("<li><a class=\"ui-btn ui-btn-icon-right ui-icon-carat-r\">'.$result[$i]['topic'].'</a></li>");';
+
+		    $topicNum = $i++;
+
+	  	}
+
+    ?>
+
 	  //bind choosing a topic to starting chat and getting a tapid
 	  $(".topic_list a").click(function(){
 	  	var $tempTopic = $(this).html();
@@ -224,7 +275,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" data-filter-reveal="true" class="topic_list">
+    <ul id="listFav" data-role="listview" data-filter="true" data-filter-placeholder="Search TopicB" data-inset="true" data-filter-reveal="true" class="topic_list">
 	    	<li><a>TopicB</a></li>
 	    	<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
