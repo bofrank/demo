@@ -203,15 +203,13 @@
 
 		<?php
 
-			for($i=0;$i<count($result);$i+=3){
+			for($i=0;$i<count($result);$i++){
 
 		    $dataFormated[$i]['topic'] = $result[$i]['topic'];
 		    $dataFormated[$i]['tapid'] = $result[$i]['tapid'];
 		    $dataFormated[$i]['category'] = $result[$i]['category'];
 
 		    echo '$(".topic_list").append("<li><a class=\"ui-btn ui-btn-icon-right ui-icon-carat-r\">'.$result[$i]['topic'].'</a></li>");';
-
-		    $topicNum = $i++;
 
 	  	}
 
