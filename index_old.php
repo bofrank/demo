@@ -307,8 +307,8 @@
 
 	<div role="main" class="ui-content">
 		
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list" data-filter-reveal="true">
-				<li><a>Counseling</a></li>
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Whats on your mind?" data-inset="true" class="topic_list" data-filter-reveal="true">
+			<li><a>Counseling</a></li>
 				<li><a>Churches</a></li>
 				<li><a>Breweries</a></li>
 				<li><a>TopicB</a></li>
@@ -324,13 +324,10 @@
 				<li><a>best month for powder</a></li>
 				<li><a>powder skiis</a></li>
 		</ul>
-		
-		
-	<!--
-<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10758.92525143306!2d-122.32014538694011!3d47.61191397244879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scounseling!5e0!3m2!1sen!2sus!4v1421727948804" width="100%" height="450" frameborder="0" style="border:0" onclick="chatStart('counseling')"></iframe>-->
-
-<img src="images/map.png" style="width:100%;" onclick="chatStart('counseling')" />
-
+	
+<!--
+<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10758.92525143306!2d-122.32014538694011!3d47.61191397244879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1schurch!5e0!3m2!1sen!2sus!4v1421727219943" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+-->
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -342,10 +339,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list">
-			<li><a>Counseling</a></li>
-				<li><a>Churches</a></li>
-				<li><a>Breweries</a></li>
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Whats on your mind?" data-inset="true" class="topic_list">
 				<li><a>TopicB</a></li>
 				<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
@@ -370,7 +364,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Whats on your mind?" data-inset="true" class="topic_list">
 				<li><a>TopicB</a></li>
 				<li><a><img src='http://topicb.com/seahawks/images/logo.png' style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
@@ -419,7 +413,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Whats on your mind?" data-inset="true" class="topic_list">
 				<li><a>TopicB</a></li>
 				<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>

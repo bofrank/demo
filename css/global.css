@@ -1,0 +1,45 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* force scrollbar, prevents initial gap */
+html {
+  overflow-y: scroll; 
+}
+
+body {
+  font-family: sans-serif;
+}
+
+
+/* ---- isotope ---- */
+
+.isotope {
+  background: #DDD;
+}
+
+/* clear fix */
+.isotope:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .element-item ---- */
+
+/* 5 columns, percentage width */
+.item,
+.grid-sizer {
+  width: 50%;
+}
+
+.item {
+  float: left;
+  background: #ccc;
+  border: 1px solid #333;
+  border-color: hsla(0, 0%, 0%, 0.7);
+}
+
+.item.width2 { width: 50%; }

@@ -1,4 +1,5 @@
 <!-- footer begin -->
+<!--
 <div data-role="footer" data-id="data-footer" data-position="fixed">
 	<div data-role="navbar">
 		<ul>
@@ -9,5 +10,5 @@
 			<li><a href="#page_05" id="link_05" data-transition="slide"><i class="fa fa-phone" style="font-size:20px;color:#999;"></i><br>Call</a></li>
 		</ul>
 	</div>
-</div>
+</div>-->
 <!-- footer end -->
