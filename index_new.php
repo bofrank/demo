@@ -30,41 +30,15 @@
 		</style>
 	</head>
 	<body>
-		<div class="container">
-			<div class="container_left">
-				<div class="wrapper">
-					<img class="img_item" src="images/item_1.png" />
-					<div class="img_meta">
-						Wallace + Barnes Sinclair Sweatshirt
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="img_item" src="images/item_2.png" />
-					<div class="img_meta">
-						shore projects watches
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="img_item" src="images/item_3.png" />
-					<div class="img_meta">
-						Wire Wrapped Pendant Light
-					</div>
-				</div>
-			</div>
-			<div class="container_right">
-				<div class="wrapper">
-					<img class="img_item" src="images/item_4.png" />
-					<div class="img_meta">
-						SUPPLY PAPER CO. | fine linen twine ball
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="img_item" src="images/item_5.png" />
-					<div class="img_meta">
-						Gray Matter Pitcher
-					</div>
-				</div>
-			</div>
+		<div style="width:100%;height:800px;background:url(images/map.png) no-repeat;">
+
+			<img src="images/beer/topic_1.png" style="position:relative;left:50px;top:20px;cursor:pointer;" onclick="chatStart('Stout')" />
+			<img src="images/beer/topic_2.png" style="position:relative;left:0px;top:115px;cursor:pointer;" onclick="chatStart('Wheat')" />
+			<img src="images/beer/topic_3.png" style="position:relative;left:-50px;top:280px;cursor:pointer;" onclick="chatStart('Red')" />
+			<img src="images/beer/topic_4.png" style="position:relative;left:10px;top:390px;cursor:pointer;" onclick="chatStart('Cider')" />
+			<img src="images/beer/topic_5.png" style="position:relative;left:-290px;top:350px;cursor:pointer;" onclick="chatStart('CDA')" />
+		 
+			<!--<img src="images/map.png" style="width:100%;" onclick="chatStart('counseling')" />-->
 		</div>
 	</body>
 </html>

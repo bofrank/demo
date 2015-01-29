@@ -34,6 +34,9 @@
 				border-top: 1px solid #e7e7e7;
     		color: #777;border-radius: 0 0 6px 6px;background-color:#fff;padding:10px;
 			}
+			.wrapper{
+				cursor:pointer;
+			}
 		</style>
 </head>
 
@@ -262,6 +265,18 @@
 
 		$("#phoneBox").attr("src","../flashphone/index.php?c="+newCookie);
 
+		$(".img_item").parent().click(function(){
+
+			//$('#link_01').trigger('click');
+		  chatStart($("div.img_meta",this).html());
+		  $tempimg=$(".img_item").attr("src");
+			$("#imgTopic").attr("src",$tempimg);
+
+		});
+
+		//ux
+		$(".ui-bar-inherit").css("background-color","#fff");
+
 	});
 
 	//create unique id (this will eventually become tapid from sip server)
@@ -280,6 +295,7 @@
 		console.log("start chat with "+topic);
 		$.mobile.changePage("#page_03");
 		$("#chatBox").attr("src","../index_chat.php?chatter="+<?php echo $strTapId ?>+"&chatee=1111111111&topicinit="+topic);
+		$(".ui-bar-inherit").css("background-color","#fff");
 	}
 
 	function voiceStart(callee){
@@ -325,12 +341,82 @@
 				<li><a>powder skiis</a></li>
 		</ul>
 		
-		
-	<!--
-<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10758.92525143306!2d-122.32014538694011!3d47.61191397244879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scounseling!5e0!3m2!1sen!2sus!4v1421727948804" width="100%" height="450" frameborder="0" style="border:0" onclick="chatStart('counseling')"></iframe>-->
-
-<img src="images/map.png" style="width:100%;" onclick="chatStart('counseling')" />
-
+		<div class="imgbox">
+			<div class="imgbox_left">
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_02.jpg" />
+					<div class="img_meta">
+						Yoga
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_07.jpg" />
+					<div class="img_meta">
+						Music
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_11.jpg" />
+					<div class="img_meta">
+						Bikes
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_04.jpg" />
+					<div class="img_meta">
+						Creative Writing
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_01.jpg" />
+					<div class="img_meta">
+						Mental Health
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_08.jpg" />
+					<div class="img_meta">
+						Apple
+					</div>
+				</div>
+			</div>
+			<div class="imgbox_right">
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_09.jpg" />
+					<div class="img_meta">
+						Craft Beer
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_06.jpg" />
+					<div class="img_meta">
+						Visual Art
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_10.jpg" />
+					<div class="img_meta">
+						Cars
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_03.jpg" />
+					<div class="img_meta">
+						Health Services
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" src="images/topics/topic_05.jpg" />
+					<div class="img_meta">
+						Acting
+					</div>
+				</div>
+			</div>
+		</div>
+	
+<!--
+<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10758.92525143306!2d-122.32014538694011!3d47.61191397244879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1schurch!5e0!3m2!1sen!2sus!4v1421727219943" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+-->
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -342,23 +428,16 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list">
-			<li><a>Counseling</a></li>
-				<li><a>Churches</a></li>
-				<li><a>Breweries</a></li>
-				<li><a>TopicB</a></li>
-				<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
-				<li><a>Heli-Skiing</a></li>
-				<li><a>Travel Agent</a></li>
-				<li><a>Snow Report</a></li>
-				<li><a>Lodging</a></li>
-				<li><a>Kids Snow School</a></li>
-				<li><a>Restaurants</a></li>
-				<li><a>Alpine Tour Bindings</a></li>
-				<li><a>fresh powder</a></li>
-				<li><a>best month for powder</a></li>
-				<li><a>powder skiis</a></li>
-		</ul>
+		<div style="width:100%;height:800px;background:url(images/map.png) no-repeat;">
+
+			<img src="images/topics/thumbs/topic_1.png" style="position:relative;left:50px;top:20px;cursor:pointer;" onclick="chatStart('Counseling');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_5.jpg');" />
+			<img src="images/topics/thumbs/topic_2.png" style="position:relative;left:0px;top:115px;cursor:pointer;" onclick="chatStart('Yoga');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_2.jpg');" />
+			<img src="images/topics/thumbs/topic_3.png" style="position:relative;left:-50px;top:280px;cursor:pointer;" onclick="chatStart('Craft Beer');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_3.jpg');" />
+			<img src="images/topics/thumbs/topic_4.png" style="position:relative;left:30px;top:290px;cursor:pointer;" onclick="chatStart('Church');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_4.jpg');" />
+			<img src="images/topics/thumbs/topic_5.png" style="position:relative;left:180px;top:10px;cursor:pointer;" onclick="chatStart('Movies');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_1.jpg');" />
+		 
+			<!--<img src="images/map.png" style="width:100%;" onclick="chatStart('counseling')" />-->
+		</div>
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -397,11 +476,13 @@
 
 	<div role="main" class="ui-content">
 
-		<div style="width:90%;margin-left:auto;margin-right:auto;padding-left:15px;padding-right:15px;background:#999;">
+		<div style="width:90%;margin-left:auto;margin-right:auto;padding-left:15px;padding-right:15px;background:#999;border-radius: 3px;">
 
-			<div id="imgTopic">
-				
+			<div>
+				<img id="imgTopic" style="height:100px;margin:10px;border-radius:3px;" src="" />
 			</div>
+			<br>
+			<span style="color:#fff;font-family:arial;text-shadow:none;">Call now or chat.</span>
 
       <iframe style="border:none;min-height:400px;margin-top:10px;overflow:hidden;width:103%;" src="../index_chat.php?chatter=0000000000&amp;chatee=1111111111&amp;topicinit=lobby" id="chatBox"></iframe>
 
@@ -419,7 +500,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about??" data-inset="true" class="topic_list">
 				<li><a>TopicB</a></li>
 				<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>

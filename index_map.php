@@ -34,6 +34,9 @@
 				border-top: 1px solid #e7e7e7;
     		color: #777;border-radius: 0 0 6px 6px;background-color:#fff;padding:10px;
 			}
+			.ui-input-text{
+				color:#000;
+			}
 		</style>
 </head>
 
@@ -307,7 +310,7 @@
 
 	<div role="main" class="ui-content">
 		
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="Whats on your mind?" data-inset="true" class="topic_list" data-filter-reveal="true">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list" data-filter-reveal="true">
 				<li><a>Counseling</a></li>
 				<li><a>Churches</a></li>
 				<li><a>Breweries</a></li>
@@ -325,58 +328,21 @@
 				<li><a>powder skiis</a></li>
 		</ul>
 		
-		<div class="imgbox" onclick="chatStart('counseling')">
-			<div class="imgbox_left">
-				<div class="wrapper">
-					<img class="img_item" src="http://ahimsacounseling.org/images/ahimsa_logo-trans_520w.png" />
-					<div class="img_meta">
-						Ahisma Counseling
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="img_item" src="http://www.pacificacounseling.com/img/logo-pacifica.png" />
-					<div class="img_meta">
-						Pacifica Counseling
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="img_item" src="http://www.jessazimmerman.com/images/jz-logo-new.png" />
-					<div class="img_meta">
-						Jessa Zimmerman MA
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="img_item" src="http://www.alkipsych.com/SiteImages/APA%20logo%20001%20blue.jpg" />
-					<div class="img_meta">
-						Alki Psych
-					</div>
-				</div>
-			</div>
-			<div class="imgbox_right">
-				<div class="wrapper">
-					<img class="img_item" src="http://www.seattlecounselingtherapy.com/uploads/1/5/1/7/15175376/1376674066.jpg" />
-					<div class="img_meta">
-						Affinity Mental Health
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="img_item" src="http://www.pattersoncounseling.com/wp-content/uploads/2012/02/slider1.png" />
-					<div class="img_meta">
-						Jennifer Patterson LMFT ATR
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="img_item" src="http://www.lakeunioncounseling.com/images/logo.gif" />
-					<div class="img_meta">
-						Lake Union Counseling
-					</div>
-				</div>
-			</div>
+		
+	<!--
+<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10758.92525143306!2d-122.32014538694011!3d47.61191397244879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scounseling!5e0!3m2!1sen!2sus!4v1421727948804" width="100%" height="450" frameborder="0" style="border:0" onclick="chatStart('counseling')"></iframe>-->
+
+		<div style="width:100%;height:800px;background:url(images/map.png) no-repeat;">
+
+			<img src="images/topics/topic_1.png" style="position:relative;left:50px;top:20px;cursor:pointer;" onclick="chatStart('Counseling');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_1.jpg');" />
+			<img src="images/topics/topic_2.png" style="position:relative;left:0px;top:115px;cursor:pointer;" onclick="chatStart('Yoga');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_2.jpg');" />
+			<img src="images/topics/topic_3.png" style="position:relative;left:-50px;top:280px;cursor:pointer;" onclick="chatStart('Craft Beer');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_3.jpg');" />
+			<img src="images/topics/topic_4.png" style="position:relative;left:30px;top:290px;cursor:pointer;" onclick="chatStart('Church');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_4.jpg');" />
+			<img src="images/topics/topic_5.png" style="position:relative;left:180px;top:10px;cursor:pointer;" onclick="chatStart('Movies');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_5.jpg');" />
+		 
+			<!--<img src="images/map.png" style="width:100%;" onclick="chatStart('counseling')" />-->
 		</div>
-	
-<!--
-<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10758.92525143306!2d-122.32014538694011!3d47.61191397244879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1schurch!5e0!3m2!1sen!2sus!4v1421727219943" width="100%" height="450" frameborder="0" style="border:0"></iframe>
--->
+
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -388,7 +354,10 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="Whats on your mind?" data-inset="true" class="topic_list">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list">
+			<li><a>Counseling</a></li>
+				<li><a>Churches</a></li>
+				<li><a>Breweries</a></li>
 				<li><a>TopicB</a></li>
 				<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
@@ -413,7 +382,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="Whats on your mind?" data-inset="true" class="topic_list">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list">
 				<li><a>TopicB</a></li>
 				<li><a><img src='http://topicb.com/seahawks/images/logo.png' style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
@@ -442,9 +411,11 @@
 
 		<div style="width:90%;margin-left:auto;margin-right:auto;padding-left:15px;padding-right:15px;background:#999;">
 
-			<div id="imgTopic">
-				
+			<div>
+				<img id="imgTopic" style="max-width:100%;" src="" />
 			</div>
+			<br>
+			<span style="color:#fff;font-family:arial;text-shadow:none;">Call now or chat.</span>
 
       <iframe style="border:none;min-height:400px;margin-top:10px;overflow:hidden;width:103%;" src="../index_chat.php?chatter=0000000000&amp;chatee=1111111111&amp;topicinit=lobby" id="chatBox"></iframe>
 
@@ -462,7 +433,7 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="Whats on your mind?" data-inset="true" class="topic_list">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list">
 				<li><a>TopicB</a></li>
 				<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
 				<li><a>Heli-Skiing</a></li>
