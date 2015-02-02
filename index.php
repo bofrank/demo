@@ -26,6 +26,7 @@
 				border-radius: 6px;
 				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
 				margin:10px;
+				line-height:.85;
 			}
 			.img_item{
 				width:100%;border-radius: 6px 6px 0 0;
@@ -34,8 +35,15 @@
 				border-top: 1px solid #e7e7e7;
     		color: #777;border-radius: 0 0 6px 6px;background-color:#fff;padding:10px;
 			}
+			.img_topic{
+				float:left;
+			}
+			.img_votes{
+				float:right;
+			}
 			.wrapper{
 				cursor:pointer;
+				line-height:.85;
 			}
 		</style>
 </head>
@@ -268,7 +276,7 @@
 		$(".img_item").parent().click(function(){
 
 			//$('#link_01').trigger('click');
-		  chatStart($("div.img_meta",this).html());
+		  chatStart($("div.img_topic",this).html());
 		  $tempimg=$(".img_item").attr("src");
 			$("#imgTopic").attr("src",$tempimg);
 
@@ -346,37 +354,79 @@
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_02.jpg" />
 					<div class="img_meta">
-						Yoga
+						<div class="img_topic">
+							Yoga
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>808
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_07.jpg" />
 					<div class="img_meta">
-						Music
+						<div class="img_topic">
+							Music
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>2,351
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_11.jpg" />
 					<div class="img_meta">
-						Bikes
+						<div class="img_topic">
+							Bikes
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>324
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_04.jpg" />
 					<div class="img_meta">
-						Creative Writing
+						<div class="img_topic">
+							Creative Writing
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>7
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_01.jpg" />
 					<div class="img_meta">
-						Mental Health
+						<div class="img_topic">
+							Mental Health
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>468
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_08.jpg" />
 					<div class="img_meta">
-						Apple
+						<div class="img_topic">
+							Apple
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>12
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -384,31 +434,66 @@
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_09.jpg" />
 					<div class="img_meta">
-						Craft Beer
+						<div class="img_topic">
+							Craft Beer
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>1,256
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_06.jpg" />
 					<div class="img_meta">
-						Visual Art
+						<div class="img_topic">
+							Visual Art
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>546
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_10.jpg" />
 					<div class="img_meta">
-						Cars
+						<div class="img_topic">
+							Cars
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>22
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_03.jpg" />
 					<div class="img_meta">
-						Health Services
+						<div class="img_topic">
+							Health Services
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>321
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_05.jpg" />
 					<div class="img_meta">
-						Acting
+						<div class="img_topic">
+							Acting
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>85
+						</div>
+						<div style="clear:both;">
+						</div>
 					</div>
 				</div>
 			</div>
