@@ -277,7 +277,8 @@
 
 			//$('#link_01').trigger('click');
 		  chatStart($("div.img_topic",this).html());
-		  $tempimg=$(".img_item").attr("src");
+		  $tempimg=$(".img_item",this).attr("src");
+		  //$tempimg=$(".img_item").attr("src");
 			$("#imgTopic").attr("src",$tempimg);
 
 		});
@@ -561,15 +562,27 @@
 
 	<div role="main" class="ui-content">
 
-		<div style="width:90%;margin-left:auto;margin-right:auto;padding-left:15px;padding-right:15px;background:#999;border-radius: 3px;">
+		<div style="margin-left:auto;margin-right:auto;">
 
-			<div>
-				<img id="imgTopic" style="height:100px;margin:10px;border-radius:3px;" src="" />
+			<div style="height:250px;overflow:hidden;">
+				<div style="background-color: rgba(0,0,0,.2);height:100px;position:relative;top:180px;width:94%;margin-left:10px;text-shadow:none;color:#fff;font-size:45px;">
+					<div style="margin:10px;">
+	    			<div style="float:left;">
+	    				<i class="fa fa-thumbs-o-up"></i>
+						</div>
+						<div style="float:left;">
+						  <span>808</span>
+						</div>
+						<div style="float:right;">
+						  <i style="" class="fa fa-thumbs-o-down"></i>
+						</div>
+						<div style="clear:both;"></div>
+  				</div>
+  			</div>
+				<img id="imgTopic" style="margin:-100px 10px 10px 10px;border-radius:3px;width:94%;" src="" />
 			</div>
-			<br>
-			<span style="color:#fff;font-family:arial;text-shadow:none;">Call now or chat.</span>
 
-      <iframe style="border:none;min-height:400px;margin-top:10px;overflow:hidden;width:103%;" src="../index_chat.php?chatter=0000000000&amp;chatee=1111111111&amp;topicinit=lobby" id="chatBox"></iframe>
+      <iframe style="border:none;min-height:400px;margin-top:10px;margin-left:10px;overflow:hidden;width:99%;" src="../index_chat.php?chatter=0000000000&amp;chatee=1111111111&amp;topicinit=lobby" id="chatBox"></iframe>
 
     </div>
 
