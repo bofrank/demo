@@ -567,13 +567,13 @@
 			<div style="height:250px;overflow:hidden;">
 				<div style="background-color: rgba(0,0,0,.2);height:100px;position:relative;top:180px;width:94%;margin-left:10px;text-shadow:none;color:#fff;font-size:45px;">
 					<div style="margin:10px;">
-	    			<div style="float:left;">
+	    			<div style="float:left;width:15%;">
 	    				<i class="fa fa-thumbs-o-up"></i>
 						</div>
-						<div style="float:left;">
-						  <span>808</span>
+						<div style="float:left;width:65%;text-align:center;">
+						  <div>808</div>
 						</div>
-						<div style="float:right;">
+						<div style="float:right;width:15%;text-align:right;">
 						  <i style="" class="fa fa-thumbs-o-down"></i>
 						</div>
 						<div style="clear:both;"></div>
