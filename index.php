@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TopicB Demo</title>
+	<title>TopicB Demo V.03</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
@@ -106,7 +106,7 @@
 
 		$DB = new DB($config);
 
-		$DB->Query("SELECT * FROM topicb.topics ORDER BY tapid DESC");
+		$DB->Query("SELECT * FROM topicb.topics");
 
 		$result = $DB->get();
 
@@ -114,19 +114,35 @@
 
 		//$dataResult = $dataFormated[0]['topic'];
 		//$dataResult = json_encode(fix_keys($dataFormated));
-/*
-		for($i=0;$i<count($result);$i+=3){
+
+		for($i=0;$i<count($result);$i++){
 
 	    $dataFormated[$i]['topic'] = $result[$i]['topic'];
-	    $dataFormated[$i]['tapid'] = $result[$i]['tapid'];
-	    $dataFormated[$i]['category'] = $result[$i]['category'];
+	    $dataFormated[$i]['score'] = $result[$i]['score'];
+	    $dataFormated[$i]['image'] = $result[$i]['image'];
 
 	    $topicNum = $i+1;
 
-	    echo "var topicNum=".$topicNum;
+	    echo "var topic = '".$dataFormated[0]['topic']."'";
 
-		}
+//use the followingas a template
+/* 
+	    <div class="wrapper">
+				<img class="img_item" src="images/topics/topic_02.jpg" />
+				<div class="img_meta">
+					<div class="img_topic">
+						Yoga
+					</div>
+					<div class="img_votes">
+						<i class="fa fa-thumbs-o-up"></i>808
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+			</div>
 */
+		}
+
 
 	?>
 
@@ -285,6 +301,8 @@
 
 		//ux
 		$(".ui-bar-inherit").css("background-color","#fff");
+		$(".ui-input-search input").css("font-size","19px").css("height","43px").css("padding-top","12px");
+		$(".ui-filterable").css("margin-left","35px");
 
 	});
 
@@ -305,6 +323,8 @@
 		$.mobile.changePage("#page_03");
 		$("#chatBox").attr("src","../index_chat.php?chatter="+<?php echo $strTapId ?>+"&chatee=1111111111&topicinit="+topic);
 		$(".ui-bar-inherit").css("background-color","#fff");
+		$(".ui-input-search input").css("font-size","19px").css("height","43px").css("padding-top","12px");
+		$(".ui-filterable").css("margin-left","35px");
 	}
 
 	function voiceStart(callee){
@@ -331,7 +351,8 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		
+		<!--
+		<img src="images/logo.jpg" style="position:relative;top:56px;z-index:2;" />
 		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list" data-filter-reveal="true">
 				<li><a>Counseling</a></li>
 				<li><a>Churches</a></li>
@@ -348,7 +369,7 @@
 				<li><a>fresh powder</a></li>
 				<li><a>best month for powder</a></li>
 				<li><a>powder skiis</a></li>
-		</ul>
+		</ul>-->
 		
 		<div class="imgbox">
 			<div class="imgbox_left">
@@ -431,7 +452,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="imgbox_right">
+			<div class="imgbox_left">
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_09.jpg" />
 					<div class="img_meta">
