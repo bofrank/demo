@@ -115,33 +115,7 @@
 		//$dataResult = $dataFormated[0]['topic'];
 		//$dataResult = json_encode(fix_keys($dataFormated));
 
-		for($i=0;$i<count($result);$i++){
-
-	    $dataFormated[$i]['topic'] = $result[$i]['topic'];
-	    $dataFormated[$i]['score'] = $result[$i]['score'];
-	    $dataFormated[$i]['image'] = $result[$i]['image'];
-
-	    $topicNum = $i+1;
-
-	    echo "var topic = '".$dataFormated[0]['topic']."'";
-
-//use the followingas a template
-/* 
-	    <div class="wrapper">
-				<img class="img_item" src="images/topics/topic_02.jpg" />
-				<div class="img_meta">
-					<div class="img_topic">
-						Yoga
-					</div>
-					<div class="img_votes">
-						<i class="fa fa-thumbs-o-up"></i>808
-					</div>
-					<div style="clear:both;">
-					</div>
-				</div>
-			</div>
-*/
-		}
+		
 
 
 	?>
@@ -258,7 +232,7 @@
 	  });
 
 		<?php
-
+/*
 			for($i=0;$i<count($result);$i++){
 
 		    $dataFormated[$i]['topic'] = $result[$i]['topic'];
@@ -268,6 +242,36 @@
 		    //echo '$(".topic_list").append("<div class=\"element-item transition metal\" data-category=\"transition\"><h3 class=\"name\">'.$result[$i]['topic'].'</h3></div>");';
 
 	  	}
+*/
+			for($i=0;$i<count($result);$i++){
+
+				    $dataFormated[$i]['topic'] = $result[$i]['topic'];
+				    $dataFormated[$i]['score'] = $result[$i]['score'];
+				    $dataFormated[$i]['image'] = $result[$i]['image'];
+
+				    $topicNum = $i+1;
+
+				    echo "var topic = '".$dataFormated[0]['topic']."';";
+
+						echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i>".$result[$i]['score']."</div><div style=\"clear:both;\"></div></div></div>');";
+					
+					//use the followingas a template
+					/* 
+						    <div class="wrapper">
+									<img class="img_item" src="$result[$i]['image']" />
+									<div class="img_meta">
+										<div class="img_topic">
+											$result[$i]['topic']
+										</div>
+										<div class="img_votes">
+											<i class="fa fa-thumbs-o-up"></i>$result[$i]['score']
+										</div>
+										<div style="clear:both;">
+										</div>
+									</div>
+								</div>
+					*/
+			}
 
     ?>
 
@@ -452,7 +456,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="imgbox_left">
+			<div class="imgbox_right">
 				<div class="wrapper">
 					<img class="img_item" src="images/topics/topic_09.jpg" />
 					<div class="img_meta">
