@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TopicB Demo V.03</title>
+	<title>TopicB Demo V.04</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
@@ -52,7 +52,9 @@
 <script>
 
 
-	var strTapId, strPassWord;
+	var strTapId, strPassWord, tempVote;
+
+	var voteJSON = {};
 			
 	<?php
 
@@ -246,6 +248,8 @@
 */
 	  	echo "var tempTopic = '';";
 
+	  	//echo "var voteJSON = {};";
+
 			for($i=0;$i<count($result);$i++){
 
 				    $dataFormated[$i]['topic'] = $result[$i]['topic'];
@@ -257,6 +261,8 @@
 				    echo "var topic = '".$dataFormated[0]['topic']."';";
 
 				    echo "var tempTopic = '".$result[$i]['topic']."';";
+
+				    echo "voteJSON['".$result[$i]['topic']."']=0;";
 
 						echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
 					
@@ -357,20 +363,56 @@
 		$('#link_01').trigger('click');
 	}
 
+	//var voteCounter = "voted";
+
 	function upVote(topic){
-		xmlhttp = new XMLHttpRequest();
-	  xmlhttp.open("GET", "http://topicb.com/demo/upVote.php?topic="+topic, true);
-	  xmlhttp.send();
-	  var num = +$("#scoreDiv").text() + 1;
-		$("#scoreDiv").text(num);
+
+		if(voteJSON[''+topic+'']<1){
+			
+			xmlhttp = new XMLHttpRequest();
+		  xmlhttp.open("GET", "http://topicb.com/demo/upVote.php?topic="+topic, true);
+		  xmlhttp.send();
+
+		  var num = 0;
+
+			if(voteJSON[''+topic+'']==0){
+				var num = +$("#scoreDiv").text() + 1;
+			}else{
+				var num = +$("#scoreDiv").text() + 2;
+			}
+
+			voteJSON[''+topic+''] = 1;
+			$("#scoreDiv").text(num);
+
+		}else{
+			alert("Already up voted!");
+		}
+
 	}
 
 	function downVote(topic){
-		xmlhttp = new XMLHttpRequest();
-	  xmlhttp.open("GET", "http://topicb.com/demo/downVote.php?topic="+topic, true);
-	  xmlhttp.send();
-	  var num = +$("#scoreDiv").text() - 1;
-		$("#scoreDiv").text(num);
+
+		if(voteJSON[''+topic+'']>-1){
+
+			xmlhttp = new XMLHttpRequest();
+		  xmlhttp.open("GET", "http://topicb.com/demo/downVote.php?topic="+topic, true);
+		  xmlhttp.send();
+
+		  var num = 0;
+
+			if(voteJSON[''+topic+'']==0){
+				var num = +$("#scoreDiv").text() - 1;
+			}else{
+				var num = +$("#scoreDiv").text() - 2;
+			}
+
+			voteJSON[''+topic+''] = -1;
+			$("#scoreDiv").text(num);
+
+		}else{
+			alert("Already down voted!");
+		}
+
 	}
 
 </script>
