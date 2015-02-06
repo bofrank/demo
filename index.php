@@ -40,6 +40,7 @@
 			}
 			.img_votes{
 				float:right;
+				cursor:pointer;
 			}
 			.wrapper{
 				cursor:pointer;
@@ -243,6 +244,8 @@
 
 	  	}
 */
+	  	echo "var tempTopic = '';";
+
 			for($i=0;$i<count($result);$i++){
 
 				    $dataFormated[$i]['topic'] = $result[$i]['topic'];
@@ -253,7 +256,9 @@
 
 				    echo "var topic = '".$dataFormated[0]['topic']."';";
 
-						echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i>".$result[$i]['score']."</div><div style=\"clear:both;\"></div></div></div>');";
+				    echo "var tempTopic = '".$result[$i]['topic']."';";
+
+						echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
 					
 					//use the followingas a template
 					/* 
@@ -293,13 +298,16 @@
 
 		$("#phoneBox").attr("src","../flashphone/index.php?c="+newCookie);
 
+		//using this function for the tiling image taps
 		$(".img_item").parent().click(function(){
 
 			//$('#link_01').trigger('click');
-		  chatStart($("div.img_topic",this).html());
+		  //chatStart($("div.img_topic",this).html());
+		  chatStart($("div.img_topic",this).html(),$("span.votes_num",this).text());
 		  $tempimg=$(".img_item",this).attr("src");
 		  //$tempimg=$(".img_item").attr("src");
 			$("#imgTopic").attr("src",$tempimg);
+			//$(".img_votes").text();
 
 		});
 
@@ -322,13 +330,16 @@
 	//create chat from clicking on topic
 
 	var topic="default";
-	function chatStart(topic){
+	function chatStart(topic,$votes){
 		console.log("start chat with "+topic);
 		$.mobile.changePage("#page_03");
 		$("#chatBox").attr("src","../index_chat.php?chatter="+<?php echo $strTapId ?>+"&chatee=1111111111&topicinit="+topic);
 		$(".ui-bar-inherit").css("background-color","#fff");
 		$(".ui-input-search input").css("font-size","19px").css("height","43px").css("padding-top","12px");
 		$(".ui-filterable").css("margin-left","35px");
+		$("#upVoteDiv").attr("onclick","upVote('"+topic+"')");
+		$("#downVoteDiv").attr("onclick","downVote('"+topic+"')");
+		$("#scoreDiv").html($votes);
 	}
 
 	function voiceStart(callee){
@@ -344,6 +355,22 @@
 	function favSave(topic){
 		//alert("Topic "+topic+" saved. Go to favs.");
 		$('#link_01').trigger('click');
+	}
+
+	function upVote(topic){
+		xmlhttp = new XMLHttpRequest();
+	  xmlhttp.open("GET", "http://topicb.com/demo/upVote.php?topic="+topic, true);
+	  xmlhttp.send();
+	  var num = +$("#scoreDiv").text() + 1;
+		$("#scoreDiv").text(num);
+	}
+
+	function downVote(topic){
+		xmlhttp = new XMLHttpRequest();
+	  xmlhttp.open("GET", "http://topicb.com/demo/downVote.php?topic="+topic, true);
+	  xmlhttp.send();
+	  var num = +$("#scoreDiv").text() - 1;
+		$("#scoreDiv").text(num);
 	}
 
 </script>
@@ -592,13 +619,13 @@
 			<div style="height:250px;overflow:hidden;">
 				<div style="background-color: rgba(0,0,0,.2);height:100px;position:relative;top:180px;width:94%;margin-left:10px;text-shadow:none;color:#fff;font-size:45px;">
 					<div style="margin:10px;">
-	    			<div style="float:left;width:15%;">
+	    			<div style="float:left;width:15%;cursor:pointer;" id="upVoteDiv">
 	    				<i class="fa fa-thumbs-o-up"></i>
 						</div>
 						<div style="float:left;width:65%;text-align:center;">
-						  <div>808</div>
+						  <div id="scoreDiv">808</div>
 						</div>
-						<div style="float:right;width:15%;text-align:right;">
+						<div style="float:right;width:15%;text-align:right;cursor:pointer;" id="downVoteDiv">
 						  <i style="" class="fa fa-thumbs-o-down"></i>
 						</div>
 						<div style="clear:both;"></div>
