@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TopicB Demo V.04</title>
+	<title>TopicB Beta V.05</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
@@ -264,7 +264,11 @@
 
 				    echo "voteJSON['".$result[$i]['topic']."']=0;";
 
-						echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
+				    if($i % 2 == 0){
+							echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
+						}else{
+							echo "$('.imgbox_right').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
+						}
 					
 					//use the followingas a template
 					/* 
@@ -414,6 +418,14 @@
 		}
 
 	}
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53853189-1', 'auto');
+  ga('send', 'pageview');
 
 </script>
 
@@ -609,13 +621,13 @@
 
 	<div role="main" class="ui-content">
 		<div style="width:100%;height:800px;background:url(images/map.png) no-repeat;">
-
+<!--
 			<img src="images/topics/thumbs/topic_1.png" style="position:relative;left:50px;top:20px;cursor:pointer;" onclick="chatStart('Counseling');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_5.jpg');" />
 			<img src="images/topics/thumbs/topic_2.png" style="position:relative;left:0px;top:115px;cursor:pointer;" onclick="chatStart('Yoga');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_2.jpg');" />
 			<img src="images/topics/thumbs/topic_3.png" style="position:relative;left:-50px;top:280px;cursor:pointer;" onclick="chatStart('Craft Beer');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_3.jpg');" />
 			<img src="images/topics/thumbs/topic_4.png" style="position:relative;left:30px;top:290px;cursor:pointer;" onclick="chatStart('Church');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_4.jpg');" />
 			<img src="images/topics/thumbs/topic_5.png" style="position:relative;left:180px;top:10px;cursor:pointer;" onclick="chatStart('Movies');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_1.jpg');" />
-		 
+		 -->
 			<!--<img src="images/map.png" style="width:100%;" onclick="chatStart('counseling')" />-->
 		</div>
 	</div>
