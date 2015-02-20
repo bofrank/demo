@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TopicB Beta V.05</title>
+	<title>TopicB Beta V.06</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
@@ -14,8 +14,19 @@
 				font-family: 'Roboto Slab', serif;
 				font-size: 14px;
 			}
-			.imgbox_left{
+			.topicbox_left{
 				width:50%;
+				float:left;
+			}
+			.topicbox_right{
+				width:50%;
+				float:left;
+			}
+			.topic_item{
+				width:100%;border-radius: 6px 6px 0 0;border:0px;
+			}
+			.imgbox_left{
+				width:100%;
 				float:left;
 			}
 			.imgbox_right{
@@ -29,8 +40,12 @@
 				line-height:.85;
 			}
 			.img_item{
-				width:100%;border-radius: 6px 6px 0 0;
+				
 			}
+			.img_item_old{
+				width:100%;border-radius: 6px 6px 0 0;border:0px;
+			}
+
 			.img_meta{
 				border-top: 1px solid #e7e7e7;
     		color: #777;border-radius: 0 0 6px 6px;background-color:#fff;padding:10px;
@@ -46,6 +61,7 @@
 				cursor:pointer;
 				line-height:.85;
 			}
+
 		</style>
 </head>
 
@@ -255,6 +271,7 @@
 				    $dataFormated[$i]['topic'] = $result[$i]['topic'];
 				    $dataFormated[$i]['score'] = $result[$i]['score'];
 				    $dataFormated[$i]['image'] = $result[$i]['image'];
+				    $dataFormated[$i]['vid'] = $result[$i]['vid'];
 
 				    $topicNum = $i+1;
 
@@ -264,14 +281,39 @@
 
 				    echo "voteJSON['".$result[$i]['topic']."']=0;";
 
-				    if($i % 2 == 0){
-							echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
-						}else{
-							echo "$('.imgbox_right').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
+				    //check to see if the source is video
+				    if (strpos($result[$i]['image'],'youtube') !== false) {
+				    	
+				    	//get youtube id
+				    	$pieces = explode("/", $result[$i]['image']);
+				    	//there might be params so seperate them
+				    	$youtubeid = explode("?", $pieces[4]);
+
+				    	//display item with youtube thumbnail
+				    	echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;\" src=\"http://img.youtube.com/vi/".$youtubeid[0]."/default.jpg\" alt=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\">".$result[$i]['topic']."<br/><i class=\"fa fa-thumbs-o-up\"></i>".$result[$i]['score']."</div></div><div style=\"clear:both;\"></div>');";
+
+				    }else{
+
+				    	//display item with image
+							echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;max-width:100px;\" src=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\">".$result[$i]['topic']."<br/><i class=\"fa fa-thumbs-o-up\"></i>".$result[$i]['score']."</div></div><div style=\"clear:both;\"></div>');";
+
 						}
 					
-					//use the followingas a template
+					//use the followingas a template for masonry
 					/* 
+
+						//*******************************handle video and toggle between columns*******************************
+					if (strpos($result[$i]['image'],'youtube') !== false) {
+				    	echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><iframe class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
+				    }else{
+					    if($i % 2 == 0){
+								echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
+							}else{
+								echo "$('.imgbox_right').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
+							}
+						}
+
+						//*******************************template for masonry*******************************
 						    <div class="wrapper">
 									<img class="img_item" src="$result[$i]['image']" />
 									<div class="img_meta">
@@ -286,19 +328,44 @@
 									</div>
 								</div>
 					*/
+								//*******************************template for blog list*******************************
+								/*
+//get youtube id
+
+http://img.youtube.com/vi/zhd-vH_MvCY/default.jpg
+
+https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
+
+						    <div class="wrapper">
+									<img style="float:left;height:50px;" src="http://img.youtube.com/vi/$youtubeid[0]/default.jpg" />
+									<div style="float:left;">
+										$result[$i]['topic']
+									</div>
+									<div style="float:right;">
+										<i class="fa fa-thumbs-o-up"></i>$result[$i]['score']
+									</div>
+									<div style="clear:both;"></div>
+								</div>
+								*/
 			}
 
     ?>
 
-	  //bind choosing a topic to starting chat and getting a tapid
+	  //bind on drop down list choosing a topic to starting chat and getting a tapid
 	  $(".topic_list a").click(function(){
 	  	console.log("clicked");
 	  	var $tempTopic = $(this).html();
-	  	var $tempURL = $(this).find('img').attr("src");
+	  	var $tempImg = $(this).find('img').attr("src");
+	  	var $tempVid = $(this).find('iframe').attr("src");
 	  	if($($tempTopic).is("img")){
 	  		console.log("going to img chat");
-		  	chatStart($tempURL);
-		  	$("#imgTopic").html("<img src="+$tempURL+" />");
+		  	chatStart($tempImg);
+		  	console.log("tempImg = "+$tempImg);
+		  	if($tempImg.indexOf("youtube") > 0){
+		  		$("#imgTopic").html("<iframe src="+$tempImg+" />");
+		  	}else{
+		  		$("#imgTopic").html("<img src="+$tempImg+" />");
+		  	}
 			}else{
 				console.log("going to text chat");
 				chatStart($(this).text());
@@ -308,16 +375,35 @@
 
 		$("#phoneBox").attr("src","../flashphone/index.php?c="+newCookie);
 
-		//using this function for the tiling image taps
-		$(".img_item").parent().click(function(){
+		//using this function for the tiling topic image taps
+		$(".topic_item").parent().click(function(){
+			console.log("topic clicked");
 
+		  $temptopic=$(".img_topic",this).text();
+
+		  console.log("topic = " + $temptopic);
+
+		  $('#link_01').trigger('click');
+
+		});
+
+		//using this function for the blogger list
+		$(".img_item").parent().click(function(){
+			console.log("topic clicked");
 			//$('#link_01').trigger('click');
 		  //chatStart($("div.img_topic",this).html());
 		  chatStart($("div.img_topic",this).html(),$("span.votes_num",this).text());
+
+			//test for video
 		  $tempimg=$(".img_item",this).attr("src");
-		  //$tempimg=$(".img_item").attr("src");
-			$("#imgTopic").attr("src",$tempimg);
-			//$(".img_votes").text();
+		  $tempurl=$(".img_item",this).attr("alt");
+
+
+			if($tempimg.indexOf("youtube") > 0){
+	  		$("#mediaWrapper").html("<iframe id='imgTopic' style='margin:-100px 10px 10px 10px;border-radius:3px;width:94%;' src='"+$tempurl+"' />");
+	  	}else{
+	  		$("#mediaWrapper").html("<img id='imgTopic' style='margin:-100px 10px 10px 10px;border-radius:3px;width:94%;' src='"+$tempimg+"' />");
+	  	}
 
 		});
 
@@ -436,30 +522,10 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<!--
-		<img src="images/logo.jpg" style="position:relative;top:56px;z-index:2;" />
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="What do you want to talk about?" data-inset="true" class="topic_list" data-filter-reveal="true">
-				<li><a>Counseling</a></li>
-				<li><a>Churches</a></li>
-				<li><a>Breweries</a></li>
-				<li><a>TopicB</a></li>
-				<li><a><img src="http://topicb.com/seahawks/images/logo.png" style='max-height:200%;max-width:200%' /></a></li>
-				<li><a>Heli-Skiing</a></li>
-				<li><a>Travel Agent</a></li>
-				<li><a>Snow Report</a></li>
-				<li><a>Lodging</a></li>
-				<li><a>Kids Snow School</a></li>
-				<li><a>Restaurants</a></li>
-				<li><a>Alpine Tour Bindings</a></li>
-				<li><a>fresh powder</a></li>
-				<li><a>best month for powder</a></li>
-				<li><a>powder skiis</a></li>
-		</ul>-->
-		
-		<div class="imgbox">
-			<div class="imgbox_left">
+		<div class="topicbox">
+			<div class="topicbox_left">
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_02.jpg" />
+					<img class="topic_item" src="images/topics/topic_02.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Yoga
@@ -472,7 +538,7 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_07.jpg" />
+					<img class="topic_item" src="images/topics/topic_07.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Music
@@ -485,7 +551,7 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_11.jpg" />
+					<img class="topic_item" src="images/topics/topic_11.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Bikes
@@ -498,7 +564,7 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_04.jpg" />
+					<img class="topic_item" src="images/topics/topic_04.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Creative Writing
@@ -511,7 +577,7 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_01.jpg" />
+					<img class="topic_item" src="images/topics/topic_01.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Mental Health
@@ -524,7 +590,7 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_08.jpg" />
+					<img class="topic_item" src="images/topics/topic_08.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Apple
@@ -537,9 +603,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="imgbox_right">
+			<div class="topicbox_right">
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_09.jpg" />
+					<img class="topic_item" src="images/topics/topic_09.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Craft Beer
@@ -552,7 +618,7 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_06.jpg" />
+					<img class="topic_item" src="images/topics/topic_06.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Visual Art
@@ -565,7 +631,7 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_10.jpg" />
+					<img class="topic_item" src="images/topics/topic_10.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Cars
@@ -578,7 +644,7 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_03.jpg" />
+					<img class="topic_item" src="images/topics/topic_03.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Health Services
@@ -591,7 +657,7 @@
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="img_item" src="images/topics/topic_05.jpg" />
+					<img class="topic_item" src="images/topics/topic_05.jpg" />
 					<div class="img_meta">
 						<div class="img_topic">
 							Acting
@@ -605,10 +671,6 @@
 				</div>
 			</div>
 		</div>
-	
-<!--
-<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10758.92525143306!2d-122.32014538694011!3d47.61191397244879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1schurch!5e0!3m2!1sen!2sus!4v1421727219943" width="100%" height="450" frameborder="0" style="border:0"></iframe>
--->
 	</div>
 
 	<?php include('footer.php'); ?>
@@ -620,15 +682,89 @@
 	<?php include('header.php'); ?>
 
 	<div role="main" class="ui-content">
-		<div style="width:100%;height:800px;background:url(images/map.png) no-repeat;">
-<!--
-			<img src="images/topics/thumbs/topic_1.png" style="position:relative;left:50px;top:20px;cursor:pointer;" onclick="chatStart('Counseling');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_5.jpg');" />
-			<img src="images/topics/thumbs/topic_2.png" style="position:relative;left:0px;top:115px;cursor:pointer;" onclick="chatStart('Yoga');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_2.jpg');" />
-			<img src="images/topics/thumbs/topic_3.png" style="position:relative;left:-50px;top:280px;cursor:pointer;" onclick="chatStart('Craft Beer');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_3.jpg');" />
-			<img src="images/topics/thumbs/topic_4.png" style="position:relative;left:30px;top:290px;cursor:pointer;" onclick="chatStart('Church');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_4.jpg');" />
-			<img src="images/topics/thumbs/topic_5.png" style="position:relative;left:180px;top:10px;cursor:pointer;" onclick="chatStart('Movies');$('#imgTopic').attr('src','http://topicb.com/demo/images/profiles/profile_1.jpg');" />
-		 -->
-			<!--<img src="images/map.png" style="width:100%;" onclick="chatStart('counseling')" />-->
+		<div class="imgbox">
+			<div class="imgbox_left">
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_02.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						What are your favorite Yoga positions?<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_07.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						Top 10 Electronica of 2015<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_11.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						Fuji Transonic 2.7<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_04.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						How to be creative in writing your posts.<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_01.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						How to find a good therapist.<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_08.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						What to look for in displays.<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_09.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						Hop Alternatives<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_06.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						Gerhard Richter's Influence in the Art Market<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_10.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						Why Subarus are Popular on Vashon Island<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_05.jpg" />
+					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
+						Why Actors make Great CEOs<br/><i class="fa fa-thumbs-o-up"></i>50
+					</div>
+					<div style="clear:both;">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -685,7 +821,9 @@
 						<div style="clear:both;"></div>
   				</div>
   			</div>
-				<img id="imgTopic" style="margin:-100px 10px 10px 10px;border-radius:3px;width:94%;" src="" />
+  			<div id="mediaWrapper">
+					<!--<img id="imgTopic" style="margin:-100px 10px 10px 10px;border-radius:3px;width:94%;" src="" />-->
+				</div>
 			</div>
 
       <iframe style="border:none;min-height:400px;margin-top:10px;margin-left:10px;overflow:hidden;width:99%;" src="../index_chat.php?chatter=0000000000&amp;chatee=1111111111&amp;topicinit=lobby" id="chatBox"></iframe>
