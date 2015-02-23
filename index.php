@@ -51,7 +51,7 @@
     		color: #777;border-radius: 0 0 6px 6px;background-color:#fff;padding:10px;
 			}
 			.img_topic{
-				float:left;
+
 			}
 			.img_votes{
 				float:right;
@@ -290,12 +290,12 @@
 				    	$youtubeid = explode("?", $pieces[4]);
 
 				    	//display item with youtube thumbnail
-				    	echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;\" src=\"http://img.youtube.com/vi/".$youtubeid[0]."/default.jpg\" alt=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\">".$result[$i]['topic']."<br/><i class=\"fa fa-thumbs-o-up\"></i>".$result[$i]['score']."</div></div><div style=\"clear:both;\"></div>');";
+				    	echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;\" src=\"http://img.youtube.com/vi/".$youtubeid[0]."/default.jpg\" alt=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:10px 50px 10px 10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\"><span class=\"img_topic\">".$result[$i]['topic']."</span><br/><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"float:right;margin-top:-44px;margin-right:8px;\"><i class=\"fa fa-play-circle-o\" style=\"color:#98c0e0;font-size:40px;\"></i></div></div><div style=\"clear:both;\"></div>');";
 
 				    }else{
 
 				    	//display item with image
-							echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;max-width:100px;\" src=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\">".$result[$i]['topic']."<br/><i class=\"fa fa-thumbs-o-up\"></i>".$result[$i]['score']."</div></div><div style=\"clear:both;\"></div>');";
+							echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;max-width:100px;\" src=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\"><span class=\"img_topic\">".$result[$i]['topic']."</span><br/><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div></div><div style=\"clear:both;\"></div>');";
 
 						}
 					
@@ -392,7 +392,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 			console.log("topic clicked");
 			//$('#link_01').trigger('click');
 		  //chatStart($("div.img_topic",this).html());
-		  chatStart($("div.img_topic",this).html(),$("span.votes_num",this).text());
+		  chatStart($("span.img_topic",this).html(),$("span.votes_num",this).text());
 
 			//test for video
 		  $tempimg=$(".img_item",this).attr("src");
@@ -400,9 +400,9 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 
 
 			if($tempimg.indexOf("youtube") > 0){
-	  		$("#mediaWrapper").html("<iframe id='imgTopic' style='margin:-100px 10px 10px 10px;border-radius:3px;width:94%;' src='"+$tempurl+"' />");
+	  		$("#mediaWrapper").html("<iframe id='imgTopic' style='margin:-100px 10px 10px 10px;border-width:0px;border-radius:3px;width:94%;' src='"+$tempurl+"' />");
 	  	}else{
-	  		$("#mediaWrapper").html("<img id='imgTopic' style='margin:-100px 10px 10px 10px;border-radius:3px;width:94%;' src='"+$tempimg+"' />");
+	  		$("#mediaWrapper").html("<img id='imgTopic' style='margin:-100px 10px 10px 10px;border-radius:5px;width:94%;' src='"+$tempimg+"' />");
 	  	}
 
 		});
@@ -525,10 +525,23 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 		<div class="topicbox">
 			<div class="topicbox_left">
 				<div class="wrapper">
-					<img class="topic_item" src="images/topics/topic_02.jpg" />
+					<img class="topic_item" src="images/topics/topic_15.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
-							Yoga
+						<div class="img_topic" style="float:left;">
+							Startups
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>1,090
+						</div>
+						<div style="clear:both;">
+						</div>
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="topic_item" src="http://st.houzz.com/simgs/9f915d0801e440a8_8-9074/mediterranean-kitchen.jpg" />
+					<div class="img_meta">
+						<div class="img_topic" style="float:left;">
+							Interior Design
 						</div>
 						<div class="img_votes">
 							<i class="fa fa-thumbs-o-up"></i>808
@@ -538,9 +551,22 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 					</div>
 				</div>
 				<div class="wrapper">
+					<img class="topic_item" src="images/topics/topic_13.jpg" />
+					<div class="img_meta">
+						<div class="img_topic" style="float:left;">
+							Board Games
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>1,256
+						</div>
+						<div style="clear:both;">
+						</div>
+					</div>
+				</div>
+				<div class="wrapper">
 					<img class="topic_item" src="images/topics/topic_07.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
+						<div class="img_topic" style="float:left;">
 							Music
 						</div>
 						<div class="img_votes">
@@ -553,7 +579,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="topic_item" src="images/topics/topic_11.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
+						<div class="img_topic" style="float:left;">
 							Bikes
 						</div>
 						<div class="img_votes">
@@ -564,22 +590,9 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 					</div>
 				</div>
 				<div class="wrapper">
-					<img class="topic_item" src="images/topics/topic_04.jpg" />
-					<div class="img_meta">
-						<div class="img_topic">
-							Creative Writing
-						</div>
-						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>7
-						</div>
-						<div style="clear:both;">
-						</div>
-					</div>
-				</div>
-				<div class="wrapper">
 					<img class="topic_item" src="images/topics/topic_01.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
+						<div class="img_topic" style="float:left;">
 							Mental Health
 						</div>
 						<div class="img_votes">
@@ -592,7 +605,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="topic_item" src="images/topics/topic_08.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
+						<div class="img_topic" style="float:left;">
 							Apple
 						</div>
 						<div class="img_votes">
@@ -605,9 +618,48 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 			</div>
 			<div class="topicbox_right">
 				<div class="wrapper">
+					<img class="topic_item" src="images/topics/topic_14.jpg" />
+					<div class="img_meta">
+						<div class="img_topic" style="float:left;">
+							Dogs
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>5,609
+						</div>
+						<div style="clear:both;">
+						</div>
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="topic_item" src="images/topics/topic_04.jpg" />
+					<div class="img_meta">
+						<div class="img_topic" style="float:left;">
+							Creative Writing
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>7
+						</div>
+						<div style="clear:both;">
+						</div>
+					</div>
+				</div>
+				<div class="wrapper">
+					<img class="topic_item" src="images/topics/topic_02.jpg" />
+					<div class="img_meta">
+						<div class="img_topic" style="float:left;">
+							Yoga
+						</div>
+						<div class="img_votes">
+							<i class="fa fa-thumbs-o-up"></i>808
+						</div>
+						<div style="clear:both;">
+						</div>
+					</div>
+				</div>
+				<div class="wrapper">
 					<img class="topic_item" src="images/topics/topic_09.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
+						<div class="img_topic" style="float:left;">
 							Craft Beer
 						</div>
 						<div class="img_votes">
@@ -620,7 +672,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="topic_item" src="images/topics/topic_06.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
+						<div class="img_topic" style="float:left;">
 							Visual Art
 						</div>
 						<div class="img_votes">
@@ -633,7 +685,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="topic_item" src="images/topics/topic_10.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
+						<div class="img_topic" style="float:left;">
 							Cars
 						</div>
 						<div class="img_votes">
@@ -646,7 +698,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="topic_item" src="images/topics/topic_03.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
+						<div class="img_topic" style="float:left;">
 							Health Services
 						</div>
 						<div class="img_votes">
@@ -659,7 +711,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="topic_item" src="images/topics/topic_05.jpg" />
 					<div class="img_meta">
-						<div class="img_topic">
+						<div class="img_topic" style="float:left;">
 							Acting
 						</div>
 						<div class="img_votes">
@@ -687,7 +739,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_02.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						What are your favorite Yoga positions?<br/><i class="fa fa-thumbs-o-up"></i>50
+						What are your favorite Yoga positions?<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
@@ -695,7 +747,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_07.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						Top 10 Electronica of 2015<br/><i class="fa fa-thumbs-o-up"></i>50
+						Top 10 Electronica of 2015<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
@@ -703,7 +755,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_11.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						Fuji Transonic 2.7<br/><i class="fa fa-thumbs-o-up"></i>50
+						Fuji Transonic 2.7<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
@@ -711,7 +763,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_04.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						How to be creative in writing your posts.<br/><i class="fa fa-thumbs-o-up"></i>50
+						How to be creative in writing your posts.<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
@@ -719,7 +771,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_01.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						How to find a good therapist.<br/><i class="fa fa-thumbs-o-up"></i>50
+						How to find a good therapist.<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
@@ -727,7 +779,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_08.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						What to look for in displays.<br/><i class="fa fa-thumbs-o-up"></i>50
+						What to look for in displays.<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
@@ -735,7 +787,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_09.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						Hop Alternatives<br/><i class="fa fa-thumbs-o-up"></i>50
+						Hop Alternatives<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
@@ -743,7 +795,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_06.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						Gerhard Richter's Influence in the Art Market<br/><i class="fa fa-thumbs-o-up"></i>50
+						Gerhard Richter's Influence in the Art Market<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
@@ -751,7 +803,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_10.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						Why Subarus are Popular on Vashon Island<br/><i class="fa fa-thumbs-o-up"></i>50
+						Why Subarus are Popular on Vashon Island<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
@@ -759,7 +811,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_05.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						Why Actors make Great CEOs<br/><i class="fa fa-thumbs-o-up"></i>50
+						Why Actors make Great CEOs<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
