@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TopicB Beta V.06</title>
+	<title>TopicB Beta V.07</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
@@ -23,7 +23,10 @@
 				float:left;
 			}
 			.topic_item{
-				width:100%;border-radius: 6px 6px 0 0;border:0px;
+				width:100%;border-radius: 6px 6px 0 0;border:0px;margin-top:-50px;
+			}
+			.promo_item{
+				width:100%;border-radius: 6px;border:0px;
 			}
 			.imgbox_left{
 				width:100%;
@@ -38,6 +41,7 @@
 				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
 				margin:10px;
 				line-height:.85;
+				overflow:hidden;
 			}
 			.img_item{
 				
@@ -125,7 +129,7 @@
 
 		$DB = new DB($config);
 
-		$DB->Query("SELECT * FROM topicb.topics");
+		$DB->Query("SELECT * FROM topicb.topics ORDER BY score ASC");
 
 		$result = $DB->get();
 
@@ -349,10 +353,15 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 								*/
 			}
 
+			//display promo item in topics screen
+			echo "$('.topicbox_left').prepend('<div class=\"wrapper\"><a href=\"http://wordpress.org/plugins/topicb-chat/\" target=\"_blank\"><img class=\"promo_item\" src=\"images/get_wordpress_plugin.jpg\" /></a></div>');";
+
     ?>
 
 	  //bind on drop down list choosing a topic to starting chat and getting a tapid
 	  $(".topic_list a").click(function(){
+	  	$('#link_01').trigger('click');
+	  	/*
 	  	console.log("clicked");
 	  	var $tempTopic = $(this).html();
 	  	var $tempImg = $(this).find('img').attr("src");
@@ -370,7 +379,10 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 				console.log("going to text chat");
 				chatStart($(this).text());
 				$("#imgTopic").html("");
-			}
+			}*/
+
+
+
 		});
 
 		$("#phoneBox").attr("src","../flashphone/index.php?c="+newCookie);
@@ -505,6 +517,28 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 
 	}
 
+	//get topic images
+			var appendApiKeyHeader = function( xhr ) {
+				xhr.setRequestHeader('Api-Key', 'ehcwe4fvk97ur4dzc5mw4ztp')
+			}
+
+			var searchRequest = { "phrase": "startups" }
+
+			function GetSearchResults(callback) {
+			  $.ajax({
+			    type: "GET",
+			    beforeSend: appendApiKeyHeader,
+			    url: "https://api.gettyimages.com/v3/search/images?fields=comp",
+			    data: searchRequest})
+			    .success(function (data, textStatus, jqXHR) {
+			    	var tempImageURL = data['images'][0]['display_sizes'][0]['uri'];
+			    	$("#testImage").attr("src",tempImageURL);
+			    })
+			    .fail(function (data, err) { /* handle errors */ });
+			}
+
+			GetSearchResults();
+
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -525,7 +559,7 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 		<div class="topicbox">
 			<div class="topicbox_left">
 				<div class="wrapper">
-					<img class="topic_item" src="images/topics/topic_15.jpg" />
+					<img id="testImage" class="topic_item" src="" />
 					<div class="img_meta">
 						<div class="img_topic" style="float:left;">
 							Startups
@@ -796,14 +830,6 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_06.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
 						Gerhard Richter's Influence in the Art Market<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
-					</div>
-					<div style="clear:both;">
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_10.jpg" />
-					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						Why Subarus are Popular on Vashon Island<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>
