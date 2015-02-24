@@ -165,7 +165,8 @@
 	}
 
 	$(document).ready(function() {
-
+		
+		console.log("document ready");
 		//get topic from url
     var urlTopic = getUrlParameter('topic');
     var urlImage = getUrlParameter('image');
@@ -254,21 +255,56 @@
 	    $('#link_05').trigger('click');
 	  });
 
+	  
+	  
+
+
+		function addTopic(searchImageURL){
+			$("#testImage").attr("src",searchImageURL);
+		}
+
+		var appendApiKeyHeader = function( xhr ) {
+			xhr.setRequestHeader('Api-Key', 'ehcwe4fvk97ur4dzc5mw4ztp')
+		}
+
+		function GetSearchResults(searchRequest,element) {
+			console.log("getting search results");
+			var tempImageURL;
+		  $.ajax({
+		    type: "GET",
+		    beforeSend: appendApiKeyHeader,
+		    url: "https://api.gettyimages.com/v3/search/images?fields=comp",
+		    data: searchRequest})
+		    .success(function (data, textStatus, jqXHR) {
+		    	tempImageURL = data['images'][0]['display_sizes'][0]['uri'];
+					$('#'+ element + ' img').attr("src",tempImageURL);
+		    	//$("#topicRef1 img").attr("src",tempImageURL);
+		    	//$("#testImage").attr("src",tempImageURL);
+		    	//addTopic(tempImageURL);
+		    })
+		    .fail(function (data, err) {  });
+		}
+
+		//var newRequest = {"phrase":"startups"};
+
+		//GetSearchResults(newRequest);
+
+
+		
+		
+	  
+
+	  //get url
+	  //insert into html
+
+
 		<?php
-/*
-			for($i=0;$i<count($result);$i++){
 
-		    $dataFormated[$i]['topic'] = $result[$i]['topic'];
-		    $dataFormated[$i]['tapid'] = $result[$i]['tapid'];
-		    $dataFormated[$i]['category'] = $result[$i]['category'];
-
-		    //echo '$(".topic_list").append("<div class=\"element-item transition metal\" data-category=\"transition\"><h3 class=\"name\">'.$result[$i]['topic'].'</h3></div>");';
-
-	  	}
-*/
 	  	echo "var tempTopic = '';";
 
 	  	//echo "var voteJSON = {};";
+
+	  	$uniqueTopics = array();
 
 			for($i=0;$i<count($result);$i++){
 
@@ -285,6 +321,26 @@
 
 				    echo "voteJSON['".$result[$i]['topic']."']=0;";
 
+
+				    //list topics if not already listed
+				    
+				    if(!in_array($result[$i]['category'], $uniqueTopics)){
+
+				    	array_push($uniqueTopics, $result[$i]['category']);
+
+				    	sleep(1);
+
+					    echo "$('.topicbox_left').prepend('<div class=\"wrapper\" id=\"topicRef".$i."\"><img class=\"topic_item\" src=\"\" /><div class=\"img_meta\"><div class=\"img_topic\" style=\"float:left;\"><span>".$result[$i]['category']."</span></div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i>1,090</div><div style=\"clear:both;\"></div></div></div>');";
+
+					    echo "console.log(\"created topic html\");";
+
+					    //echo "GetSearchResults(\"".$result[$i]['category']."\",\"topicRef".$i."\");";
+							echo "tempPhrase = {\"phrase\":\"".$result[$i]['category']."\"};";
+					    echo "GetSearchResults(tempPhrase,\"topicRef".$i."\");";
+
+				  	}
+
+				    //list blog posts
 				    //check to see if the source is video
 				    if (strpos($result[$i]['image'],'youtube') !== false) {
 				    	
@@ -303,54 +359,7 @@
 
 						}
 					
-					//use the followingas a template for masonry
-					/* 
 
-						//*******************************handle video and toggle between columns*******************************
-					if (strpos($result[$i]['image'],'youtube') !== false) {
-				    	echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><iframe class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
-				    }else{
-					    if($i % 2 == 0){
-								echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
-							}else{
-								echo "$('.imgbox_right').prepend('<div class=\"wrapper\"><img class=\"img_item\" src=\"".$result[$i]['image']."\" /><div class=\"img_meta\"><div class=\"img_topic\">".$result[$i]['topic']."</div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"clear:both;\"></div></div></div>');";
-							}
-						}
-
-						//*******************************template for masonry*******************************
-						    <div class="wrapper">
-									<img class="img_item" src="$result[$i]['image']" />
-									<div class="img_meta">
-										<div class="img_topic">
-											$result[$i]['topic']
-										</div>
-										<div class="img_votes">
-											<i class="fa fa-thumbs-o-up"></i>$result[$i]['score']
-										</div>
-										<div style="clear:both;">
-										</div>
-									</div>
-								</div>
-					*/
-								//*******************************template for blog list*******************************
-								/*
-//get youtube id
-
-http://img.youtube.com/vi/zhd-vH_MvCY/default.jpg
-
-https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
-
-						    <div class="wrapper">
-									<img style="float:left;height:50px;" src="http://img.youtube.com/vi/$youtubeid[0]/default.jpg" />
-									<div style="float:left;">
-										$result[$i]['topic']
-									</div>
-									<div style="float:right;">
-										<i class="fa fa-thumbs-o-up"></i>$result[$i]['score']
-									</div>
-									<div style="clear:both;"></div>
-								</div>
-								*/
 			}
 
 			//display promo item in topics screen
@@ -358,30 +367,25 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 
     ?>
 
-	  //bind on drop down list choosing a topic to starting chat and getting a tapid
-	  $(".topic_list a").click(function(){
+		  //bind on drop down list choosing a topic to starting chat and getting a tapid
+		  $(".topic_list a").click(function(){
 	  	$('#link_01').trigger('click');
+
+
+	  	//get topic images
 	  	/*
-	  	console.log("clicked");
-	  	var $tempTopic = $(this).html();
-	  	var $tempImg = $(this).find('img').attr("src");
-	  	var $tempVid = $(this).find('iframe').attr("src");
-	  	if($($tempTopic).is("img")){
-	  		console.log("going to img chat");
-		  	chatStart($tempImg);
-		  	console.log("tempImg = "+$tempImg);
-		  	if($tempImg.indexOf("youtube") > 0){
-		  		$("#imgTopic").html("<iframe src="+$tempImg+" />");
-		  	}else{
-		  		$("#imgTopic").html("<img src="+$tempImg+" />");
-		  	}
-			}else{
-				console.log("going to text chat");
-				chatStart($(this).text());
-				$("#imgTopic").html("");
-			}*/
+	  	console.log("pre getting topic");
+		
+			$(".topic_item").each(function(){
+				console.log("getting topic");
+				//get topic
+				//tempPhrase = {"phrase":$("span",this).text()};
+				tempPhrase = {"phrase":"dogs"};
+				topicID = $(this).attr("id");
+				console.log("getting url = "+topicID);
+	    	GetSearchResults(tempPhrase,topicID);
 
-
+	  	});*/
 
 		});
 
@@ -517,27 +521,10 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 
 	}
 
-	//get topic images
-			var appendApiKeyHeader = function( xhr ) {
-				xhr.setRequestHeader('Api-Key', 'ehcwe4fvk97ur4dzc5mw4ztp')
-			}
 
-			var searchRequest = { "phrase": "startups" }
 
-			function GetSearchResults(callback) {
-			  $.ajax({
-			    type: "GET",
-			    beforeSend: appendApiKeyHeader,
-			    url: "https://api.gettyimages.com/v3/search/images?fields=comp",
-			    data: searchRequest})
-			    .success(function (data, textStatus, jqXHR) {
-			    	var tempImageURL = data['images'][0]['display_sizes'][0]['uri'];
-			    	$("#testImage").attr("src",tempImageURL);
-			    })
-			    .fail(function (data, err) { /* handle errors */ });
-			}
+			
 
-			GetSearchResults();
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -558,19 +545,6 @@ https://www.youtube.com/embed/zhd-vH_MvCY?feature=oembed
 	<div role="main" class="ui-content">
 		<div class="topicbox">
 			<div class="topicbox_left">
-				<div class="wrapper">
-					<img id="testImage" class="topic_item" src="" />
-					<div class="img_meta">
-						<div class="img_topic" style="float:left;">
-							Startups
-						</div>
-						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>1,090
-						</div>
-						<div style="clear:both;">
-						</div>
-					</div>
-				</div>
 				<div class="wrapper">
 					<img class="topic_item" src="http://st.houzz.com/simgs/9f915d0801e440a8_8-9074/mediterranean-kitchen.jpg" />
 					<div class="img_meta">
