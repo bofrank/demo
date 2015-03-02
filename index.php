@@ -335,8 +335,13 @@
 					    echo "console.log(\"created topic html\");";
 
 					    //echo "GetSearchResults(\"".$result[$i]['category']."\",\"topicRef".$i."\");";
-							echo "tempPhrase = {\"phrase\":\"".$result[$i]['category']."\"};";
-					    echo "GetSearchResults(tempPhrase,\"topicRef".$i."\");";
+							//echo "tempPhrase = {\"phrase\":\"".$result[$i]['category']."\"};";
+
+							$tempPhrase = "{'phrase':'".$result[$i]['category']."'}";
+
+							$j = $i*1000;
+					    //echo "setTimeout(function(){GetSearchResults(tempPhrase,\"topicRef".$i."\");},".$j.");";
+					    echo "setTimeout(function(){GetSearchResults(".$tempPhrase.",\"topicRef".$i."\");},".$j.");";
 
 				  	}
 
