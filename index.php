@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TopicB Beta V.07</title>
+	<title>TopicB Beta V.08</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
@@ -23,7 +23,7 @@
 				float:left;
 			}
 			.topic_item{
-				width:100%;border-radius: 6px 6px 0 0;border:0px;margin-top:-50px;
+				width:100%;border-radius: 6px 6px 0 0;border:0px;margin-top:-60px;
 			}
 			.promo_item{
 				width:100%;border-radius: 6px;border:0px;
@@ -306,7 +306,8 @@
 
 	  	$uniqueTopics = array();
 
-			for($i=0;$i<count($result);$i++){
+	  	//for($i=0;$i<count($result);$i++){
+			for($i=(count($result)-1);$i>1;$i--){
 
 				    $dataFormated[$i]['topic'] = $result[$i]['topic'];
 				    $dataFormated[$i]['score'] = $result[$i]['score'];
@@ -330,7 +331,11 @@
 
 				    	//sleep(2);
 
-					    echo "$('.topicbox_left').prepend('<div class=\"wrapper\" id=\"topicRef".$i."\"><img class=\"topic_item\" src=\"\" /><div class=\"img_meta\"><div class=\"img_topic\" style=\"float:left;\"><span>".$result[$i]['category']."</span></div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i>1,090</div><div style=\"clear:both;\"></div></div></div>');";
+							if ($i % 2 == 0) {
+					    	echo "$('.topicbox_right').prepend('<div class=\"wrapper\" id=\"topicRef".$i."\"><img class=\"topic_item\" src=\"\" /><div class=\"img_meta\"><div class=\"img_topic\" style=\"float:left;\"><span>".$result[$i]['category']."</span></div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i>1,090 <i class=\"fa fa-comment-o\"></i> Chat Now </div><div style=\"clear:both;\"></div></div></div>');";
+					    }else{
+					    	echo "$('.topicbox_left').prepend('<div class=\"wrapper\" id=\"topicRef".$i."\"><img class=\"topic_item\" src=\"\" /><div class=\"img_meta\"><div class=\"img_topic\" style=\"float:left;\"><span>".$result[$i]['category']."</span></div><div class=\"img_votes\"><i class=\"fa fa-thumbs-o-up\"></i>1,090 <i class=\"fa fa-comment-o\"></i> Chat Now </div><div style=\"clear:both;\"></div></div></div>');";
+					    }
 
 					    echo "console.log(\"created topic html\");";
 
@@ -339,7 +344,7 @@
 
 							$tempPhrase = "{'phrase':'".$result[$i]['category']."'}";
 
-							$j = $i*1000;
+							$j = $i*300;
 					    //echo "setTimeout(function(){GetSearchResults(tempPhrase,\"topicRef".$i."\");},".$j.");";
 					    echo "setTimeout(function(){GetSearchResults(".$tempPhrase.",\"topicRef".$i."\");},".$j.");";
 
@@ -557,7 +562,8 @@
 							Interior Design
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>808
+							<i class="fa fa-thumbs-o-up"></i>808 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -570,7 +576,8 @@
 							Board Games
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>1,256
+							<i class="fa fa-thumbs-o-up"></i>1,256 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -583,7 +590,8 @@
 							Music
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>2,351
+							<i class="fa fa-thumbs-o-up"></i>2,351 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -596,7 +604,8 @@
 							Bikes
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>324
+							<i class="fa fa-thumbs-o-up"></i>324 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -609,7 +618,8 @@
 							Mental Health
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>468
+							<i class="fa fa-thumbs-o-up"></i>468 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -622,7 +632,8 @@
 							Apple
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>12
+							<i class="fa fa-thumbs-o-up"></i>12 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -637,7 +648,8 @@
 							Dogs
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>5,609
+							<i class="fa fa-thumbs-o-up"></i>5,609 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -650,7 +662,8 @@
 							Creative Writing
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>7
+							<i class="fa fa-thumbs-o-up"></i>7 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -663,7 +676,8 @@
 							Yoga
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>808
+							<i class="fa fa-thumbs-o-up"></i>808 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -676,7 +690,8 @@
 							Craft Beer
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>1,256
+							<i class="fa fa-thumbs-o-up"></i>1,256 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -689,7 +704,8 @@
 							Visual Art
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>546
+							<i class="fa fa-thumbs-o-up"></i>546 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -702,20 +718,8 @@
 							Cars
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>22
-						</div>
-						<div style="clear:both;">
-						</div>
-					</div>
-				</div>
-				<div class="wrapper">
-					<img class="topic_item" src="images/topics/topic_03.jpg" />
-					<div class="img_meta">
-						<div class="img_topic" style="float:left;">
-							Health Services
-						</div>
-						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>321
+							<i class="fa fa-thumbs-o-up"></i>22 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
@@ -728,7 +732,8 @@
 							Acting
 						</div>
 						<div class="img_votes">
-							<i class="fa fa-thumbs-o-up"></i>85
+							<i class="fa fa-thumbs-o-up"></i>85 
+							<i class="fa fa-comment-o"></i> Chat Now 
 						</div>
 						<div style="clear:both;">
 						</div>
