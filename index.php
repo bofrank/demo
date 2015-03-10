@@ -1,73 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TopicB Beta V.08</title>
+	<title>TopicB Beta V.09</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css' />
-		<style>
-			body{
-				background-color:#e9e9e9;
-				font-family: 'Roboto Slab', serif;
-				font-size: 14px;
-			}
-			.topicbox_left{
-				width:50%;
-				float:left;
-			}
-			.topicbox_right{
-				width:50%;
-				float:left;
-			}
-			.topic_item{
-				width:100%;border-radius: 6px 6px 0 0;border:0px;margin-top:-60px;
-			}
-			.promo_item{
-				width:100%;border-radius: 6px;border:0px;
-			}
-			.imgbox_left{
-				width:100%;
-				float:left;
-			}
-			.imgbox_right{
-				width:50%;
-				float:left;
-			}
-			.wrapper{
-				border-radius: 6px;
-				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-				margin:10px;
-				line-height:.85;
-				overflow:hidden;
-			}
-			.img_item{
-				
-			}
-			.img_item_old{
-				width:100%;border-radius: 6px 6px 0 0;border:0px;
-			}
-
-			.img_meta{
-				border-top: 1px solid #e7e7e7;
-    		color: #777;border-radius: 0 0 6px 6px;background-color:#fff;padding:10px;
-			}
-			.img_topic{
-
-			}
-			.img_votes{
-				float:right;
-				cursor:pointer;
-			}
-			.wrapper{
-				cursor:pointer;
-				line-height:.85;
-			}
-
-		</style>
+	<link href="css/global.css" rel="stylesheet">
 </head>
+
+<style>
+	.fa-comment{color:#98c0e0;font-size:18px;display:none;}
+	.active{color:#82b93c;display:inline;}
+	.active span{font-size:14px;font-weight:bold;Font-Family:'Roboto Slab', serif}
+</style>
 
 <script>
 
@@ -138,7 +86,19 @@
 		//$dataResult = $dataFormated[0]['topic'];
 		//$dataResult = json_encode(fix_keys($dataFormated));
 
-		
+		//set active indication on chats
+		$time = time();
+
+		for($i=0;$i<count($result);$i++){
+			$difference = $time-$result[$i]['activated'];
+			$topic = $result[$i]['topic'];
+
+			if($difference<10){
+				//do nothing
+			}else{
+				$DB->Query("UPDATE topics SET chatstate = 'inactive' WHERE topic = '".$topic."' ");
+			}
+		}
 
 
 	?>
@@ -322,7 +282,6 @@
 
 				    echo "voteJSON['".$result[$i]['topic']."']=0;";
 
-
 				    //list topics if not already listed
 				    
 				    if(!in_array($result[$i]['category'], $uniqueTopics)){
@@ -351,6 +310,7 @@
 				  	}
 
 				    //list blog posts
+				    //show active chats 
 				    //check to see if the source is video
 				    if (strpos($result[$i]['image'],'youtube') !== false) {
 				    	
@@ -360,12 +320,12 @@
 				    	$youtubeid = explode("?", $pieces[4]);
 
 				    	//display item with youtube thumbnail
-				    	echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;\" src=\"http://img.youtube.com/vi/".$youtubeid[0]."/default.jpg\" alt=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:10px 50px 10px 10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\"><span class=\"img_topic\">".$result[$i]['topic']."</span><br/><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div><div style=\"float:right;margin-top:-44px;margin-right:8px;\"><i class=\"fa fa-play-circle-o\" style=\"color:#98c0e0;font-size:40px;\"></i></div></div><div style=\"clear:both;\"></div>');";
+				    	echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;\" src=\"http://img.youtube.com/vi/".$youtubeid[0]."/default.jpg\" alt=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:0px 50px 10px 10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\"><span class=\"img_topic\">".$result[$i]['topic']."</span><br/><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']." </span><i class=\"fa fa-comment ".$result[$i]['chatstate']."\" ><span> Active Chat</span></i></div><div style=\"float:right;margin-top:-44px;margin-right:8px;\"><i class=\"fa fa-play-circle-o\" style=\"color:#98c0e0;font-size:40px;\"></i></div></div><div style=\"clear:both;\"></div>');";
 
 				    }else{
 
 				    	//display item with image
-							echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;max-width:100px;\" src=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\"><span class=\"img_topic\">".$result[$i]['topic']."</span><br/><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']."</span></div></div><div style=\"clear:both;\"></div>');";
+							echo "$('.imgbox_left').prepend('<div class=\"wrapper\"><img class=\"img_item\" style=\"float:left;height:50px;max-width:100px;\" src=\"".$result[$i]['image']."\" /><div style=\"margin:10px 0px 0px 10px;padding:0px 50px 10px 10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;\"><span class=\"img_topic\">".$result[$i]['topic']."</span><br/><i class=\"fa fa-thumbs-o-up\"></i><span class=\"votes_num\">".$result[$i]['score']." </span><i class=\"fa fa-comment ".$result[$i]['chatstate']."\" ><span> Active Chat</span></i></div></div><div style=\"clear:both;\"></div>');";
 
 						}
 					
@@ -773,7 +733,7 @@
 				<div class="wrapper">
 					<img class="img_item" style="float:left;height:50px;max-width:100px;" src="images/topics/topic_11.jpg" />
 					<div style="margin:10px 0px 0px 10px;padding:10px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;line-height:14px;">
-						Fuji Transonic 2.7<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
+						Fuji Transonic 2.3<br/><i class="fa fa-thumbs-o-up"></i><span class="votes_num">50</span>
 					</div>
 					<div style="clear:both;">
 					</div>

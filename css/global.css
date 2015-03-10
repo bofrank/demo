@@ -1,45 +1,33 @@
-* {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+body{
+  background-color:#e9e9e9;font-family: 'Roboto Slab', serif;font-size: 14px;
 }
-
-/* force scrollbar, prevents initial gap */
-html {
-  overflow-y: scroll; 
+.topicbox_left{
+  width:50%;float:left;
 }
-
-body {
-  font-family: sans-serif;
+.topicbox_right{
+  width:50%;float:left;
 }
-
-
-/* ---- isotope ---- */
-
-.isotope {
-  background: #DDD;
+.topic_item{
+  width:100%;border-radius: 6px 6px 0 0;border:0px;margin-top:-60px;
 }
-
-/* clear fix */
-.isotope:after {
-  content: '';
-  display: block;
-  clear: both;
+.promo_item{
+  width:100%;border-radius: 6px;border:0px;
 }
-
-/* ---- .element-item ---- */
-
-/* 5 columns, percentage width */
-.item,
-.grid-sizer {
-  width: 50%;
+.imgbox_left{
+  width:100%;float:left;
 }
-
-.item {
-  float: left;
-  background: #ccc;
-  border: 1px solid #333;
-  border-color: hsla(0, 0%, 0%, 0.7);
+.imgbox_right{
+  width:50%;float:left;
 }
-
-.item.width2 { width: 50%; }
+.wrapper{
+  border-radius: 6px;box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);margin:10px;line-height:.85;overflow:hidden;
+}
+.img_meta{
+  border-top: 1px solid #e7e7e7;color: #777;border-radius: 0 0 6px 6px;background-color:#fff;padding:10px;
+}
+.img_votes{
+  float:right;cursor:pointer;
+}
+.wrapper{
+  cursor:pointer;line-height:.85;
+}
